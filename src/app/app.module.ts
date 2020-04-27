@@ -8,7 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { TodoFormComponent } from './todo-form/todo-form.component';
 import { TodosFilterPipe } from './shared/todos.filter.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -22,6 +30,14 @@ import { TodosFilterPipe } from './shared/todos.filter.pipe';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

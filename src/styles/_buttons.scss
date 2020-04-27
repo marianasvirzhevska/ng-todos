@@ -11,6 +11,7 @@
     font-size: $font-main;
     color: $white;
     &.small {
+        border-radius: 2px;
         padding: 10px 24px;
         font-size: $font-main;
     }
@@ -38,6 +39,33 @@
         background-color: $accent-red;
         &:hover {
             background-color: $hover-red;
+        }
+    }
+
+    &.outlined {
+        border: 1px solid;
+        &.primary {
+            color: $accent-blue;
+            border-color: $accent-blue;
+            &:hover {
+                background-color: $hover-blue;
+            }
+        }
+    
+        &.secondary {
+            color: $accent-green;
+            border-color: $accent-green;
+            &:hover {
+                background-color: $hover-green;
+            }
+        }
+    
+        &.danger {
+            color: $accent-red;
+            border-color: $accent-red;
+            &:hover {
+                background-color: $hover-red;
+            }
         }
     }
 }
