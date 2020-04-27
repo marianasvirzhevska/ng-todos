@@ -1,0 +1,43 @@
+@import "_variables.scss";
+
+.button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: 600;
+    padding: 13px 24px;
+    font-size: $font-main;
+    color: $white;
+    &.small {
+        padding: 10px 24px;
+        font-size: $font-main;
+    }
+
+    &.big {
+        padding: 20px 35px;
+        font-size: $font-middle;
+    }
+    
+    &.primary {
+        background-color: $accent-blue;
+        &:hover {
+            background-color: $hover-blue;
+        }
+    }
+
+    &.secondary {
+        background-color: $accent-green;
+        &:hover {
+            background-color: $hover-green;
+        }
+    }
+
+    &.danger {
+        background-color: $accent-red;
+        &:hover {
+            background-color: $hover-red;
+        }
+    }
+}
