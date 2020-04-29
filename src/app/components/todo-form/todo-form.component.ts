@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Todo, TodosService } from '../shared/todos.service';
+import { TranslateService } from '@ngx-translate/core';
+
+import { Todo, TodosService } from '../../shared/services/todos.service';
 
 @Component({
   selector: 'app-todo-form',
@@ -10,7 +12,11 @@ export class TodoFormComponent implements OnInit {
 
   title: string = '';
 
-  constructor(private todoService: TodosService) { }
+  constructor(private todoService: TodosService, public translate:  TranslateService) {
+    translate.addLangs(['en', 'ua', 'ru']);
+    translate.setDefaultLang('en');
+    translate.use('en');
+   }
 
   ngOnInit(): void {
   }

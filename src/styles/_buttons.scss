@@ -17,7 +17,7 @@
     }
 
     &.big {
-        padding: 20px 35px;
+        padding: 18px 35px;
         font-size: $font-middle;
     }
     
@@ -44,6 +44,7 @@
 
     &.outlined {
         border: 1px solid;
+        background-color: transparent;
         &.primary {
             color: $accent-blue;
             border-color: $accent-blue;
@@ -68,4 +69,15 @@
             }
         }
     }
+}
+
+.button-small {
+    border-radius: 2px;
+    padding: 10px 24px;
+    font-size: $font-main;
+}
+
+.button-big {
+    padding: 20px 35px;
+    font-size: $font-middle;
 }

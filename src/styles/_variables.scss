@@ -2,17 +2,25 @@
 $black: #000000;
 $white: #ffffff;
 
-$accent-blue: #4d99ff;
-$hover-blue: #468ef0;
-$accent-green: #00c853;
-$hover-green: #20d76c;
-$accent-red: #ff7272;
-$hover-red: #f66e6e;
+$accent-blue: #00acc1;
+$hover-blue: #007c91;
+$accent-green: #ffa726;
+$hover-green: #c77800;
+$accent-red: #ef5350;
+$hover-red: #f44336;
 $error: #fd0000;
 
 $grey-main: #70708f;
 $grey-disabled: #c1c1d1;
 $grey-placeholder: #999999;
+$grey-placeholder-2: #a4a6aa;
+$placeholder-disabled: #73738b;
+
+$border: #cfcfe1;
+$border-focus: #b2b2e7;
+$border-error: #e0bbbb;
+$border-disabled: #e4e4f3;
+
 $grey-1: #888888;
 $grey-2: #b2b2b2;
 $grey-3: #555555;
@@ -20,6 +28,8 @@ $grey-4: #b0b0c4;
 
 // Backgrounds colors
 $grey-background: #f2f2f8;
+$input-disabled: #f3f4f7;
+$blue-background: #0092a8;
 
 // Font sizes
 $font-extra-small: 12px;

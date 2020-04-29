@@ -1,0 +1,29 @@
+@import "variables";
+
+.header {
+    width: 100%;
+    background-color: $blue-background;
+    
+    &__container {
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+    }
+
+    &__title {
+        color: $white;
+        font-weight: 600;
+        font-size: $font-middle;
+    }
+
+    &__username {
+        color: $white;
+        margin-right: 40px;
+    }
+}

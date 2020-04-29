@@ -1,4 +1,5 @@
-    
+@import "variables";   
+   
 html {
   box-sizing: border-box;
 }
@@ -47,4 +48,25 @@ img {
   padding: 0 20px;
   width: 100%;
   max-width: 1024px;
+}
+
+.mat-button-base {
+
+  &.middle {
+    border-radius: 2px;
+    padding: 4px 24px;
+    font-size: $font-main;
+  }
+
+  &.big {
+      padding: 9px 35px;
+      font-size: $font-middle;
+  }
+}
+
+.mat-stroked-button:not([disabled]) {
+  &.button-logout {
+    color: $white;
+    border: 1px solid $white;
+  }
 }
