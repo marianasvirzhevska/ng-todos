@@ -12,44 +12,69 @@ export const config = {
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const users: User[] = [
-            { id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' }
+        let users: User[] = [
+            { id: 1, username: 'test', password: 'test', email: 'test@email.com' }
         ];
+
+        const storageUsers = localStorage.getItem('users');
+
+        if (storageUsers) {
+            users = JSON.parse(storageUsers);
+        }
 
         const authHeader = request.headers.get('Authorization');
         const isLoggedIn = authHeader && authHeader.startsWith('jwt-token fake-jwt-token');
 
-        // wrap in delayed observable to simulate server api call
         return of(null).pipe(mergeMap(() => {
 
-            // authenticate - public
             if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
                 const user = users.find(x => x.username === request.body.username && x.password === request.body.password);
                 if (!user) return error('Username or password is incorrect');
                 return ok({
                     id: user.id,
                     username: user.username,
-                    firstName: user.firstName,
-                    lastName: user.lastName,
+                    email: user.email,
                     token: `fake-jwt-token`
                 });
             }
 
-            // get all users
-            if (request.url.endsWith('/users') && request.method === 'GET') {
+            if (request.url.endsWith('/users/register') && request.method === 'POST') {
+                const reqBody = request.body.user;
+                const reqUser = JSON.parse(reqBody);
+
+                const isUserExist = users.find(x => x.username === reqBody.username || x.email === reqBody.email);
+                if (isUserExist) return error('Username or email is already in use.');
+                
+                const user = {
+                    id: Date.now(),
+                    username: reqUser.username,
+                    email: reqUser.email,
+                    password: reqUser.password,
+                    token: `fake-jwt-token`
+                };
+                
+                users.push(user);
+                localStorage.setItem('users', JSON.stringify(users));
+
+                return ok({
+                    id: user.id,
+                    username: user.username,
+                    email: user.email,
+                    token: `fake-jwt-token`
+                });
+            }
+
+            if (request.url.endsWith('/todos/create') && request.method === 'POST') {
                 if (!isLoggedIn) return unauthorised();
                 return ok(users);
             }
 
-            // pass through any requests not handled above
             return next.handle(request);
         }))
         // call materialize and dematerialize to ensure delay even if an error is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648)
         .pipe(materialize())
         .pipe(delay(500))
         .pipe(dematerialize());
-
-        // private helper functions
 
         function ok(body) {
             return of(new HttpResponse({ status: 200, body }));
@@ -66,7 +91,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 }
 
 export let fakeBackendProvider = {
-    // use fake backend in place of Http service for backend-less development
     provide: HTTP_INTERCEPTORS,
     useClass: FakeBackendInterceptor,
     multi: true

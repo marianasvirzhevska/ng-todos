@@ -1,0 +1,27 @@
+@import 'variables';
+
+.footer {
+    border-top: 1px solid $border-disabled;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+
+    &__container {
+        padding: 20px 0;
+    }
+
+    &__lang-switcher {
+        width: 100%;
+        padding: 0 0 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+
+    }
+
+    &__copy {
+        font-size: $font-small;
+        color: $grey-disabled;
+    }
+}

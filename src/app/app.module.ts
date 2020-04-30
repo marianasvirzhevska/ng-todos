@@ -16,6 +16,7 @@ import { MatMenuModule } from '@angular/material/menu';
 
 import { fakeBackendProvider } from './helpers/pseudo-backend';
 import { JwtInterceptor } from './helpers/jwt-interceptor';
+import { ErrorInterceptor } from './helpers/error.interceptor';
 import { AuthGuard } from './auth.guard';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +30,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './register/register.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     NotFoundComponent,
     RegisterComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +62,8 @@ import { RegisterComponent } from './register/register.component';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
     AuthGuard,
     fakeBackendProvider
   ],

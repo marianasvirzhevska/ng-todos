@@ -1,5 +1,16 @@
 {
     "form": {
         "add.todo": "Создать задание"
+    },
+    "login": {
+        "title": "Авторизуйтесь",
+        "username": "Имя или никнейм",
+        "name.required": "Поле Имя обязательное",
+        "password": "Пароль",
+        "password.required": "Поле Пароль обязательное",
+        "login": "Войти" 
+    },
+    "footer": {
+        "copyright": "Todo App Angular"
     }
 }

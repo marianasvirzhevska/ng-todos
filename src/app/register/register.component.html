@@ -1,1 +1,63 @@
-<p>register works!</p>
+
+<div class="register">
+    <div class="container register__container">
+        <h1 class="register__title">{{ "register.title" | translate }}</h1>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register__form">
+            <div class="form-group">
+                <input
+                    type="email"
+                    formControlName="email"
+                    class="form-control common-input"
+                    [placeholder]=" 'register.email' | translate "
+                    [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">{{ "register.email.required" | translate }}</div>
+                    <div *ngIf="f.email.errors.email">{{ "register.invalid.email" | translate }}</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input
+                    type="text" 
+                    formControlName="username" 
+                    class="form-control common-input"
+                    [placeholder]=" 'register.name' | translate "
+                    [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">{{ "register.name.required" | translate }}</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input
+                    type="password"
+                    formControlName="password"
+                    class="form-control common-input"
+                    [placeholder]=" 'register.password' | translate "
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">{{ "register.password.required" | translate }}</div>
+                    <div *ngIf="f.password.errors.minlength">{{ "register.password.min.length" | translate }}</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input
+                    type="password" 
+                    formControlName="confirmPassword" 
+                    class="form-control common-input"
+                    [placeholder]=" 'register.password.confirm' | translate "
+                    [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                    <div *ngIf="f.confirmPassword.errors.required">{{ "register.password.confirm.required" | translate }}</div>
+                    <div *ngIf="f.confirmPassword.errors.mustMatch">{{ "register.must.match" | translate }}</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" mat-flat-button color="primary" class="big">{{ "register.register" | translate }}</button>
+            </div>
+            <div *ngIf="error" class="error">{{error}}</div>
+            <div class="register__login-link">
+                {{ "register.have.account" | translate }} 
+                <a class="register__link" routerLink="/login">{{ "register.login" | translate }}</a>
+            </div>
+        </form>
+    </div>
+</div>
