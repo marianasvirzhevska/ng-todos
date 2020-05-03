@@ -31,5 +31,6 @@
         "invalid.email": "Email must be a valid email address",
         "password.min.length": "Password must be at least 6 characters",
         "must.match": "Passwords must match"
-    }
+    },
+    "logout": "Logout"
 }

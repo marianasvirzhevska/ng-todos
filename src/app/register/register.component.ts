@@ -21,23 +21,13 @@ export class RegisterComponent implements OnInit {
       private formBuilder: FormBuilder,
       private route: ActivatedRoute,
       private router: Router,
-      private authenticationService: AuthService,
+      private authService: AuthService,
       public translate: TranslateService
   ) {
   }
 
   ngOnInit() {
-      this.registerForm = this.formBuilder.group({
-          email: ['', [Validators.required, Validators.email]],
-          username: ['', Validators.required],
-          password: ['', [Validators.required, Validators.minLength(6)]],
-          confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
-      }, {
-          validator: this.checkPasswords('password', 'confirmPassword')
-      });
-
-      this.authenticationService.logout();
-
+      this.registerForm = this.buildForm();
       this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
@@ -52,7 +42,7 @@ export class RegisterComponent implements OnInit {
 
       this.loading = true;
 
-      this.authenticationService.register(this.registerForm.value)
+      this.authService.register(this.registerForm.value)
           .pipe(first())
           .subscribe(
               data => {
@@ -81,4 +71,18 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  private buildForm() {
+    return this.formBuilder.group(
+        {
+            email: ['', [Validators.required, Validators.email]],
+            username: ['', Validators.required],
+            password: ['', [Validators.required, Validators.minLength(6)]],
+            confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
+        }, 
+        {
+            validator: this.checkPasswords('password', 'confirmPassword')
+        }
+    );
+
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { TodosService } from '../shared/services/todos.service';
 
 @Component({
@@ -10,21 +11,15 @@ export class TodosComponent implements OnInit {
   loading = true;
   searchString = '';
 
-  constructor(public todosService: TodosService) { }
+  constructor(
+    public todosService: TodosService
+  ) {}
 
   ngOnInit(): void {
-    this.todosService.fetchTodos()
+    this.todosService.getTodos()
       .subscribe(() => {
         this.loading = false;
       });
-  }
-
-  onChange(id: number) {
-    this.todosService.onToggle(id);
-  } 
-
-  removeTodo(id: number) {
-    this.todosService.removeTodo(id);
   }
 
 }

@@ -1,38 +1,25 @@
-ul {
-    list-style: none;
-    margin: 20px 0;
-    padding: 0;
-    li {
-        padding: 10px 12px;
-        border: 1px solid lightgrey;
-        border-radius: 4px;
-        margin: 10px 0;
+@import 'variables';
+
+.todos {
+    &__container {
+        padding-left: 40px;
+        padding-right: 40px;
     }
-}
 
-.rm {
-    background: red;
-    color: #fff;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
+    &__wrapper {
 
-.done {
-    text-decoration: line-through;
-}
-
-.filter {
-    margin: 20px 0 0;
-    input {
-        padding: 14px 12px;
-        border: 1px solid rgba(0,0,0, 0.1);
-        box-sizing: border-box;
-        border-radius: 5px;
-        outline: none;
-        width: 100%;
     }
+
+    &____list {
+
+    }
+
+    &__not-found {
+        
+    }
+
+    &__loading {
+
+    }
+    
 }

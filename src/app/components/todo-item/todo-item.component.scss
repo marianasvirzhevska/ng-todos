@@ -1,0 +1,39 @@
+@import 'variables';
+
+.todo-item {
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $border;
+
+    &__description {
+        display: flex;
+        align-items: center;
+    }
+
+    &__status {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 2px solid $border-focus;
+        margin-right: 20px; 
+        &.done {
+            border: 2px solid $green-success;
+            background-color: $green-success;
+        }
+    }
+
+    &__item-label {
+        color: $black;
+        font-size: $font-small;
+        &:hover {
+            color: $hover-blue;
+        }
+    }
+
+    &__actions {
+
+    }
+
+}

@@ -25,12 +25,14 @@ import { TodosFilterPipe } from './shared/todos.filter.pipe';
 
 import { AppComponent } from './app.component';
 import { TodosComponent } from './todos/todos.component';
+import { TodoComponent } from './todo/todo.component'
 import { TodoFormComponent } from './components/todo-form/todo-form.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './register/register.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { TodoItemComponent } from './components/todo-item/todo-item.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { FooterComponent } from './components/footer/footer.component';
     NotFoundComponent,
     RegisterComponent,
     FooterComponent,
+    TodoItemComponent,
+    TodoComponent,
   ],
   imports: [
     BrowserModule,

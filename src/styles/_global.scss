@@ -75,3 +75,16 @@ img {
 .error {
   color: $error;
 }
+
+.mat-icon {
+  &.todo-action {
+    &.mat-warn {
+      color: $grey-placeholder;
+      &:hover {
+        color: $accent-red;
+      }
+
+    }
+  }
+
+}

@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from '../shared/services/auth.service';
 
+
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private authenticationService: AuthService,
+        private authService: AuthService,
         public translate: TranslateService
     ) {
     }
@@ -32,8 +33,6 @@ export class LoginComponent implements OnInit {
             username: ['', Validators.required],
             password: ['', Validators.required]
         });
-
-        this.authenticationService.logout();
 
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
@@ -48,7 +47,7 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value)
+        this.authService.login(this.f.username.value, this.f.password.value)
             .pipe(first())
             .subscribe(
                 data => {

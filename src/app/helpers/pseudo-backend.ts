@@ -4,6 +4,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 import { User } from '../shared/services/auth.service';
+import { Todo } from '../shared/services/todos.service';
 
 export const config = {
     apiUrl: 'http://localhost:4200'
@@ -12,6 +13,8 @@ export const config = {
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        const { url, method, headers, body } = request;
+
         let users: User[] = [
             { id: 1, username: 'test', password: 'test', email: 'test@email.com' }
         ];
@@ -22,13 +25,13 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             users = JSON.parse(storageUsers);
         }
 
-        const authHeader = request.headers.get('Authorization');
+        const authHeader = headers.get('Authorization');
         const isLoggedIn = authHeader && authHeader.startsWith('jwt-token fake-jwt-token');
 
         return of(null).pipe(mergeMap(() => {
 
-            if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
-                const user = users.find(x => x.username === request.body.username && x.password === request.body.password);
+            if (url.endsWith('/users/authenticate') && method === 'POST') {
+                const user = users.find(x => x.username === body.username && x.password === body.password);
                 if (!user) return error('Username or password is incorrect');
                 return ok({
                     id: user.id,
@@ -38,8 +41,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 });
             }
 
-            if (request.url.endsWith('/users/register') && request.method === 'POST') {
-                const reqBody = request.body.user;
+            if (url.endsWith('/users/register') && method === 'POST') {
+                const reqBody = body.user;
                 const reqUser = JSON.parse(reqBody);
 
                 const isUserExist = users.find(x => x.username === reqBody.username || x.email === reqBody.email);
@@ -64,9 +67,21 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 });
             }
 
-            if (request.url.endsWith('/todos/create') && request.method === 'POST') {
+            if (url.endsWith('/todos/create') && method === 'POST') {
                 if (!isLoggedIn) return unauthorised();
                 return ok(users);
+            }
+
+            if (url.match('/\/todos\/\d+$/') && method === 'GET') {
+                if (!isLoggedIn) return unauthorised();
+
+                const param = idFromUrl();
+
+                console.log('test', param, typeof param);
+
+                const todos: Todo[] = JSON.parse(localStorage.getItem('todos'));
+                // const todo: Todo = todos.find(x => x.id === id)
+                return ok('todo get');
             }
 
             return next.handle(request);
@@ -86,6 +101,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function error(message) {
             return throwError({ status: 400, error: { message } });
+        }
+
+        function idFromUrl() {
+            const urlParts = url.split('/');
+            return parseInt(urlParts[urlParts.length - 1]);
         }
     }
 }

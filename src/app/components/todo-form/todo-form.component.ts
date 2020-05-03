@@ -27,6 +27,7 @@ export class TodoFormComponent implements OnInit {
       id: Date.now(),
       completed: false,
       date: new Date(),
+      userId: 12
     }
 
     this.todoService.addTodo(todo);
