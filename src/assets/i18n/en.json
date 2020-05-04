@@ -1,6 +1,10 @@
 {
     "form": {
-        "add.todo": "Add task"
+        "add.todo": "Add todo",
+        "title": "Enter todo title",
+        "title.required": "Todo title is required",
+        "description": "Enter todo description",
+        "description.required": "Todo description is required"
     },
     "login": {
         "title": "Log In",

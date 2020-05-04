@@ -10,6 +10,7 @@ import { TodosService } from '../shared/services/todos.service';
 export class TodosComponent implements OnInit {
   loading = true;
   searchString = '';
+  todoForm = false;
 
   constructor(
     public todosService: TodosService
@@ -20,6 +21,10 @@ export class TodosComponent implements OnInit {
       .subscribe(() => {
         this.loading = false;
       });
+  }
+
+  toggleForm() {
+    this.todoForm = !this.todoForm;
   }
 
 }

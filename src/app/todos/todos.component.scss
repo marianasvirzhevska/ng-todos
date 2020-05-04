@@ -1,17 +1,26 @@
 @import 'variables';
 
+$header-height: 60px;
+$footer-height: 97px;
+
 .todos {
+    background-color: $grey-background;
+
     &__container {
-        padding-left: 40px;
-        padding-right: 40px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        min-height: calc(100vh - $header-height - $footer-height);
     }
 
     &__wrapper {
-
+        margin: 30px 0;
     }
 
-    &____list {
-
+    &__list {
+        padding: 10px 20px;
+        border-radius: 5px;
+        list-style: none;
+        background: $white;
     }
 
     &__not-found {
@@ -22,4 +31,10 @@
 
     }
     
+}
+
+.title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

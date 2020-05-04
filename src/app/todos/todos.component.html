@@ -1,10 +1,20 @@
 <div class="todos">
     <div class="container todos__container">
-        <!-- <input
-            type="text"
-            placeholder="filter todo..."
-            [(ngModel)]="searchString"> -->
-
+        <div class="title-row">
+            <h1 class="title">Todos list</h1>
+            <button *ngIf="!todoForm"
+                mat-flat-button
+                color="primary"
+                (click)="toggleForm()"
+                class="add-todo"
+                >Add Todo</button>
+            <button *ngIf="todoForm"
+                mat-stroked-button
+                color="accent"
+                (click)="toggleForm()"
+                >Cancel</button>
+        </div>
+        <app-todo-form *ngIf="todoForm" [showForm]="todoForm"></app-todo-form>
         <div *ngIf="!loading" class="todos__wrapper">
             <ul *ngIf="todosService.todos.length; else noTodos" class="todos__list">
                 <li *ngFor="let todo of todosService.todos | todosFilter: searchString" class="todos__item">
@@ -15,8 +25,7 @@
                 <p class="todos__not-found">No todos now.</p>
             </ng-template>
         </div>
-        
-        <p *ngIf="loading" class="todos__loading">Loading...</p>
+        <p *ngIf="loading" class="loading">Loading...</p>
     </div>
 </div>
 
