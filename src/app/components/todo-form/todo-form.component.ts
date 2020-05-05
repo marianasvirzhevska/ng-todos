@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -15,6 +15,8 @@ export class TodoFormComponent implements OnInit {
   submitted = false;
   user: User;
 
+  @Output() formSubmit = new EventEmitter();
+
   constructor(
     private todoService: TodosService,
     private authService: AuthService,
@@ -27,8 +29,8 @@ export class TodoFormComponent implements OnInit {
     this.authService.user.subscribe(x => this.user = x);
   }
 
-  @Input() showForm: boolean;
-  get f() { return this.todoForm.controls; }
+  get titleControl() { return this.todoForm.get('title'); }
+  get descriptionControl() { return this.todoForm.get('description'); }
 
   onSubmit() {
     this.submitted = true;
@@ -45,7 +47,7 @@ export class TodoFormComponent implements OnInit {
     };
 
     this.todoService.addTodo(newTodo);
-    this.showForm = !this.showForm;
+    this.formSubmit.emit();
   }
 
   private buildForm() {

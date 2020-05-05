@@ -17,7 +17,7 @@
         "register": "Register"
     },
     "footer": {
-        "copyright": "Todo App Angular"
+        "copyright": "Todo App. All rights reserved."
     },
     "register": {
         "title": "Register",
@@ -36,5 +36,12 @@
         "password.min.length": "Password must be at least 6 characters",
         "must.match": "Passwords must match"
     },
-    "logout": "Logout"
+    "logout": "Logout",
+    "filters": {
+        "search": "Search...",
+        "own.todos": "Only my Todos",
+        "all": "All",
+        "pending": "Pending",
+        "done": "Done"
+    }
 }

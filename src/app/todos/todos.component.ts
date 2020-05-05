@@ -1,6 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { TodosService } from '../shared/services/todos.service';
+
+export interface IFilter {
+  search?: string;
+  status?: boolean | object;
+  userId?: number;
+}
 
 @Component({
   selector: 'app-todos',
@@ -9,8 +15,8 @@ import { TodosService } from '../shared/services/todos.service';
 })
 export class TodosComponent implements OnInit {
   loading = true;
-  searchString = '';
-  todoForm = false;
+  showForm = false;
+  filtersObj = {};
 
   constructor(
     public todosService: TodosService
@@ -24,7 +30,11 @@ export class TodosComponent implements OnInit {
   }
 
   toggleForm() {
-    this.todoForm = !this.todoForm;
+    this.showForm = !this.showForm;
+  }
+
+  testOutput($event) {
+    this.filtersObj = $event;
   }
 
 }

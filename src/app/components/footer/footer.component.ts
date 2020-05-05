@@ -7,7 +7,6 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-
   constructor(public translate: TranslateService
   ) {
     translate.addLangs([ 'en', 'ua', 'ru']);
@@ -17,5 +16,4 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

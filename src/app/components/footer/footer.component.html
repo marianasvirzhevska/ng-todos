@@ -1,18 +1,9 @@
 <div class="footer">
     <div class="container footer__container">
         <div class="footer__lang-switcher">
-            <div class="lang" (click)="translate.use('ua')">
-                ua
-                <!-- <img src="assets/icons/logo_footer.svg" alt="ua"> -->
-            </div>
-            <div class="lang" (click)="translate.use('ru')">
-                ru
-                <!-- <img src="assets/icons/logo_footer.svg" alt="ru"> -->
-            </div>
-            <div class="lang" (click)="translate.use('en')">
-                en
-                <!-- <img src="assets/icons/logo_footer.svg" alt="en"> -->
-            </div>
+            <button mat-mini-fab class="lang" (click)="translate.use('ua')">ua</button>
+            <button mat-mini-fab class="lang" (click)="translate.use('ru')">ru</button>
+            <button mat-mini-fab class="lang" (click)="translate.use('en')">ru</button>
         </div>
         <div class="footer__copy">{{ "footer.copyright" | translate }} ©2020</div>
     </div>

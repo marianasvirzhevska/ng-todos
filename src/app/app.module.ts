@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { fakeBackendProvider } from './helpers/pseudo-backend';
 import { JwtInterceptor } from './helpers/jwt-interceptor';
@@ -33,6 +34,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './register/register.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
+import { FiltersComponent } from './components/filters/filters.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
     FooterComponent,
     TodoItemComponent,
     TodoComponent,
+    FiltersComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +66,7 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
     MatDialogModule,
     MatSnackBarModule, 
     MatMenuModule,
+    MatRadioModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

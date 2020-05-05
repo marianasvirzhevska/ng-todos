@@ -2,22 +2,30 @@
     <div class="container todos__container">
         <div class="title-row">
             <h1 class="title">Todos list</h1>
-            <button *ngIf="!todoForm"
+            <button *ngIf="!showForm"
                 mat-flat-button
                 color="primary"
                 (click)="toggleForm()"
-                class="add-todo"
-                >Add Todo</button>
-            <button *ngIf="todoForm"
+                class="add-todo">
+                Add Todo
+            </button>
+            <button *ngIf="showForm"
                 mat-stroked-button
                 color="accent"
-                (click)="toggleForm()"
-                >Cancel</button>
+                (click)="toggleForm()">
+                Cancel
+            </button>
         </div>
-        <app-todo-form *ngIf="todoForm" [showForm]="todoForm"></app-todo-form>
+
+        <app-todo-form
+            *ngIf="showForm"
+            (formSubmit)="toggleForm()">
+        </app-todo-form>
+
+        <app-filters></app-filters>
         <div *ngIf="!loading" class="todos__wrapper">
             <ul *ngIf="todosService.todos.length; else noTodos" class="todos__list">
-                <li *ngFor="let todo of todosService.todos | todosFilter: searchString" class="todos__item">
+                <li *ngFor="let todo of todosService.todos | todosFilter: 'e': null: null" class="todos__item">
                     <app-todo-item [todo]="todo"></app-todo-item>
                 </li>
             </ul>

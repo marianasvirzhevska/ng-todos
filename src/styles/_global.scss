@@ -93,13 +93,34 @@ img {
   color: $white;
 }
 
-.title {
-  font-weight: 500;
-  font-size: $font-extra-large;
+.mat-typography h1{
+  &.title {
+    font-weight: 400;
+    font-size: $font-heading;
+    margin: 0;
+    
+    @media(max-width: 480px) {
+      font-size: $font-extra-large;
+    }
+  }
 }
 
 .loading {
   font-weight: 500;
   font-size: $font-main;
+}
+
+.mat-mini-fab.lang {
+  box-shadow: none;
+  background-color: transparent;
+  color: $grey-main;
+  &:hover {
+    color: $black;
+    box-shadow: $shadow-small;
+  }
+
+  .selected {
+    color: $black;
+  }
 }
 
