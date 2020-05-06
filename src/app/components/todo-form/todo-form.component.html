@@ -1,0 +1,10 @@
+<div>
+    <input
+        class="common-input"
+        type="text"
+        placeholder="Enter Todo..."
+        [(ngModel)]="title"
+        (keydown.enter)="addTodo()"
+        >
+    <button (click)="addTodo()" mat-flat-button color="accent" class="big">{{ "form.add.todo" | translate }}</button>
+</div>
