@@ -1,5 +1,6 @@
 <div class="todo-page">
     <div class="container">
+        <a routerLink="/" class="back"> < {{ "back" | translate }}</a>
         <h1 class="title">Todo Details</h1>
         <div *ngIf="!loading" class="todo">
             <div class="todo__title-row">

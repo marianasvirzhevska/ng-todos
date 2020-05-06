@@ -1,23 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslationsService } from 'src/app/shared/services/translations.service';
+import { LANGUAGES } from 'src/app/shared/constants/translations';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent implements OnInit {
-  constructor(public translate: TranslateService
-  ) {
-    translate.addLangs([ 'en', 'ua', 'ru']);
-    translate.setDefaultLang('en');
-    translate.use('en');
-  }
+export class FooterComponent {
+  languages = LANGUAGES;
 
-  ngOnInit(): void {
-  }
+  constructor(
+    private translate: TranslationsService
+  ) {}
 
   checkLang(lang: string): boolean {
-    return this.translate.currentLang === lang;
+    return this.translate.getCurrentLang() === lang;
+  }
+
+  setLang(code: string) {
+    this.translate.setLanguage(code);
   }
 }

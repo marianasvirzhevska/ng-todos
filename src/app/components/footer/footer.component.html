@@ -1,9 +1,9 @@
 <div class="footer">
     <div class="container footer__container">
         <div class="footer__lang-switcher">
-            <button mat-mini-fab class="lang" [class.selected]="checkLang('ua')" (click)="translate.use('ua')">ua</button>
-            <button mat-mini-fab class="lang" [class.selected]="checkLang('ru')" (click)="translate.use('ru')">ru</button>
-            <button mat-mini-fab class="lang" [class.selected]="checkLang('en')" (click)="translate.use('en')">en</button>
+            <button mat-mini-fab class="lang" [class.selected]="checkLang(languages.UA)" (click)="setLang(languages.UA)">ua</button>
+            <button mat-mini-fab class="lang" [class.selected]="checkLang(languages.RU)" (click)="setLang(languages.RU)">ru</button>
+            <button mat-mini-fab class="lang" [class.selected]="checkLang(languages.EN)" (click)="setLang(languages.EN)">en</button>
         </div>
         <div class="footer__copy">{{ "footer.copyright" | translate }} ©2020</div>
     </div>

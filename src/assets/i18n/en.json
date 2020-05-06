@@ -45,5 +45,11 @@
         "pending": "Pending",
         "done": "Done",
         "cancel": "Remove filters"
+    },
+    "back": "Back",
+    "lang": {
+        "ua": "ua",
+        "ru": "ru",
+        "en": "en"
     }
 }

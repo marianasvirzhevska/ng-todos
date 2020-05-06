@@ -2,6 +2,7 @@
     <div class="container header__container">
         <div class="header__title">Todo App</div>
         <div class="header__actions">
+            <app-lang-switcher></app-lang-switcher>
             <div class="header__username">{{ user.username }}</div>
             <button mat-stroked-button class="button-logout" (click)="logout()">{{ "logout" | translate }}</button>
         </div>
