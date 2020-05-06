@@ -70,3 +70,59 @@ img {
     border: 1px solid $white;
   }
 }
+
+// All errors color
+.error {
+  color: $error;
+}
+
+.mat-icon {
+  &.todo-action {
+    &.mat-warn {
+      color: $grey-placeholder;
+      &:hover {
+        color: $accent-red;
+      }
+
+    }
+  }
+
+}
+
+.mat-primary.add-todo{
+  color: $white;
+}
+
+.mat-typography h1{
+  &.title {
+    font-weight: 400;
+    font-size: $font-heading;
+    margin: 0;
+    
+    @media(max-width: 480px) {
+      font-size: $font-extra-large;
+    }
+  }
+}
+
+.loading {
+  font-weight: 500;
+  font-size: $font-main;
+}
+
+.mat-mini-fab.lang {
+  box-shadow: none;
+  background-color: transparent;
+  color: $grey-main;
+  font-weight: 400;
+  &:hover {
+    color: $black;
+    box-shadow: $shadow-small;
+  }
+
+  &.selected {
+    color: $black;
+    font-weight: 500;
+  }
+}
+

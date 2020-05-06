@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { TodosService } from '../shared/services/todos.service';
+
+import { IFilter } from '../components/filters/filters.interface';
 
 @Component({
   selector: 'app-todos',
@@ -8,23 +11,29 @@ import { TodosService } from '../shared/services/todos.service';
 })
 export class TodosComponent implements OnInit {
   loading = true;
-  searchString = '';
+  showForm = false;
+  filtersObj: IFilter;
 
-  constructor(public todosService: TodosService) { }
+  constructor(
+    public todosService: TodosService
+  ) {}
 
   ngOnInit(): void {
-    this.todosService.fetchTodos()
+    this.todosService.getTodos()
       .subscribe(() => {
         this.loading = false;
       });
   }
 
-  onChange(id: number) {
-    this.todosService.onToggle(id);
-  } 
-
-  removeTodo(id: number) {
-    this.todosService.removeTodo(id);
+  toggleForm() {
+    this.showForm = !this.showForm;
   }
 
+  onFiltersChange(filter: IFilter) {
+    this.filtersObj = filter;
+  }
+
+  clearFilters() {
+    this.filtersObj = null;
+  }
 }

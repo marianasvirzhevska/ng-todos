@@ -1,0 +1,31 @@
+@import 'variables';
+
+.todo-page {
+    padding: 40px 0;
+}
+
+.todo {
+
+    &__title-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    &__title {
+        color: $black;
+        font-size: $font-extra-large;
+    }
+
+    &__description {
+        font-size: $font-main;
+    }
+
+    &__actions {
+        margin-top: 20px;
+        button {
+            margin-right: 20px;
+        }
+    }
+}

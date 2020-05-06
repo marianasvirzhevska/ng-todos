@@ -1,27 +1,47 @@
-<div *ngIf="!loading">
-    <div class="filter">
-        <input
-            type="text"
-            placeholder="filter todo..."
-            [(ngModel)]="searchString">
-    </div>
-    <ul *ngIf="todosService.todos.length; else noTodos">
-        <li *ngFor="let todo of todosService.todos | todosFilter: searchString; let i = index">
-            <span [class.done]="todo.completed">
-                <input type="checkbox" [checked]="todo.completed" (change)="onChange(todo.id)"/>
-                {{ i + 1 }}
-                <b>{{ todo.title }}</b>
-            </span>
-            <span>{{ todo.date | date: 'medium' }}</span>
-            <button class="rm" (click)="removeTodo(todo.id)">&times;</button>
-        </li>
-    </ul>
-    <ng-template #noTodos>
-        <p>No todos now</p>
-    </ng-template>
-</div>
+<div class="todos">
+    <div class="container todos__container">
+        <div class="title-row">
+            <h1 class="title">Todos list</h1>
+            <button *ngIf="!showForm"
+                mat-flat-button
+                color="primary"
+                (click)="toggleForm()"
+                class="add-todo">
+                Add Todo
+            </button>
+            <button *ngIf="showForm"
+                mat-stroked-button
+                color="accent"
+                (click)="toggleForm()">
+                Cancel
+            </button>
+        </div>
 
-<p *ngIf="loading">Loading...</p>
+        <app-todo-form
+            *ngIf="showForm"
+            (formSubmit)="toggleForm()">
+        </app-todo-form>
+
+        <app-filters (onFiltersChange)="onFiltersChange($event)"></app-filters>
+        <button *ngIf="filtersObj"
+            mat-stroked-button
+            color="warn"
+            (click)="clearFilters()"
+            class="cancel-filters">{{ 'filters.cancel' | translate}}</button>
+        <div *ngIf="!loading" class="todos__wrapper">
+            <ul *ngIf="todosService.todos.length; else noTodos" class="todos__list">
+                <li *ngFor="let todo of todosService.todos | todosFilter: filtersObj "
+                class="todos__item">
+                    <app-todo-item [todo]="todo"></app-todo-item>
+                </li>
+            </ul>
+            <ng-template #noTodos>
+                <p class="todos__not-found">No todos now.</p>
+            </ng-template>
+        </div>
+        <p *ngIf="loading" class="loading">Loading...</p>
+    </div>
+</div>
 
 
 

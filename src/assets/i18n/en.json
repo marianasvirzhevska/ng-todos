@@ -1,5 +1,48 @@
 {
     "form": {
-        "add.todo": "Add task"
+        "add.todo": "Add todo",
+        "title": "Enter todo title",
+        "title.required": "Todo title is required",
+        "description": "Enter todo description",
+        "description.required": "Todo description is required"
+    },
+    "login": {
+        "title": "Log In",
+        "username": "Username or nickname",
+        "name.required": "Username is required",
+        "password": "Password",
+        "password.required": "Password is required",
+        "login": "Login" ,
+        "no.account": "Don't have an account?",
+        "register": "Register"
+    },
+    "footer": {
+        "copyright": "Todo App. All rights reserved."
+    },
+    "register": {
+        "title": "Register",
+        "email": "Email",
+        "email.required": "Email is required",
+        "name": "Username or nickname",
+        "name.required": "Username is required",
+        "password": "Password",
+        "password.required": "Password is required",
+        "password.confirm": "Repeat Password",
+        "password.confirm.required": "Repeat Password is required",
+        "register": "Register",
+        "have.account": "Have an account?",
+        "login": "Login",
+        "invalid.email": "Email must be a valid email address",
+        "password.min.length": "Password must be at least 6 characters",
+        "must.match": "Passwords must match"
+    },
+    "logout": "Logout",
+    "filters": {
+        "search": "Search...",
+        "own.todos": "Only my Todos",
+        "all": "All",
+        "pending": "Pending",
+        "done": "Done",
+        "cancel": "Remove filters"
     }
 }

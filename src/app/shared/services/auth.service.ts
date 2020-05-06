@@ -14,9 +14,9 @@ export interface User {
     id: number;
     username: string;
     password: string;
-    firstName: string;
-    lastName: string;
+    email: string;
     token?: string;
+    confirmPassword?: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -46,9 +46,11 @@ export class AuthService {
     }
 
     register(user: User) {
+        console.log('trigger register')
         const newUser = JSON.stringify(user);
-        return this.http.post<any>(`${config.apiUrl}/users/authenticate`, { user: newUser })
+        return this.http.post<any>(`${config.apiUrl}/users/register`, { user: newUser })
         .pipe(map(user => {
+
             if (user && user.token) {
                 this.storage.setItem('user', user);
                 this.userSubject.next(user);

@@ -1,1 +1,30 @@
-<p>todo works!</p>
+<div class="todo-page">
+    <div class="container">
+        <h1 class="title">Todo Details</h1>
+        <div *ngIf="!loading" class="todo">
+            <div class="todo__title-row">
+                <div class="todo__title">{{ todo.title }}</div>
+                <mat-icon *ngIf="!todo.completed" color="accent">done</mat-icon>
+                <mat-icon *ngIf="todo.completed" color="accent">done_all</mat-icon>
+            </div>
+            <div class="todo__description">{{ todo.description }}</div>
+            <div *ngIf="isOwn" class="todo__actions">
+                <button
+                    *ngIf="!todo.completed"
+                    mat-flat-button
+                    color="accent"
+                    (click)="handleDone(todo.id)">Mark as done</button>
+                <button
+                    *ngIf="!todo.completed"
+                    mat-stroked-button
+                    color="accent"
+                    (click)="editTodo(todo.id)">Edit</button>
+                <button
+                    mat-stroked-button
+                    color="warn"
+                    (click)="removeTodo(todo.id)">Delete</button>
+            </div>
+        </div>
+        <p *ngIf="loading" class="todo__loading">Loading...</p>
+    </div>
+</div>
