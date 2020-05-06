@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthService } from './shared/services/auth.service';
-import { User } from './shared/services/user.service';
+import { AuthService, User } from './shared/services/auth.service';
 
 @Component({
      selector: 'app-root',
@@ -22,4 +21,6 @@ export class AppComponent {
         this.authenticationService.logout();
         this.router.navigate(['/login']);
     }
+
+
 }

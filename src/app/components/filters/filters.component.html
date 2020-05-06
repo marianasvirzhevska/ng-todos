@@ -1,0 +1,25 @@
+<form 
+    [formGroup]="filtersForm"
+    class="filters">
+    <div class="filters__search-row">
+        <input type="text"
+            class="filters__search common-input"
+            formControlName="searchString"
+            [placeholder]=" 'filters.search' | translate ">
+    </div>
+    <div class="filters__row">
+        <mat-radio-group
+            aria-labelledby="radio-group-label"
+            class="filters__radio-group"
+            formControlName="filtersStatus"
+            >
+            <mat-radio-button class="filters__item radio-item" *ngFor="let status of statuses" [value]="status">
+                {{ status | translate }}
+            </mat-radio-button>
+        </mat-radio-group> 
+        <div class="filters__item">
+            <mat-checkbox formControlName="ownTodos">{{ 'filters.own.todos' | translate }}</mat-checkbox>
+        </div>
+    </div>
+</form>
+

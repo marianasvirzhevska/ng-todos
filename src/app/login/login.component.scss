@@ -1,0 +1,46 @@
+@import 'variables';
+
+.login {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    &__title {
+        font-size: $font-heading;
+        font-weight: 600;
+        color: $black;
+    }
+
+    &__form {
+        width: 100%;
+        max-width: 320px;
+        
+    }
+
+    &__register-link {
+        margin-top: 45px;
+        color: $grey-main;
+        font-size: $font-main;
+    }
+
+    &__link {
+        color: $accent-blue;
+        font-weight: 500;
+        &:hover {
+            color: $hover-blue;
+        }
+    }
+
+
+}

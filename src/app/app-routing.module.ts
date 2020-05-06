@@ -11,7 +11,7 @@ import { TodoComponent } from './todo/todo.component';
 
 
 const routes: Routes = [
-  { path: '', component: TodosComponent, canActivate: [AuthGuard]},
+  { path: '', component: TodosComponent, canActivate: [AuthGuard], pathMatch: "full"},
   { path: 'todo', component: TodoComponent, canActivate: [AuthGuard] },
   { path: 'todo/:id', component: TodoComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },

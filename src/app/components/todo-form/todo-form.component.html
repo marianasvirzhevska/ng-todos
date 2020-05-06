@@ -1,10 +1,27 @@
-<div>
-    <input
-        class="common-input"
-        type="text"
-        placeholder="Enter Todo..."
-        [(ngModel)]="title"
-        (keydown.enter)="addTodo()"
-        >
-    <button (click)="addTodo()" mat-flat-button color="accent" class="big">{{ "form.add.todo" | translate }}</button>
-</div>
+<form 
+    [formGroup]="todoForm"
+    (ngSubmit)="onSubmit()" 
+    class="todos-form">
+    <div class="form-group">
+        <input
+            formControlName="title"
+            class="form-control common-input"
+            [placeholder]=" 'form.title' | translate "
+            [ngClass]="{ 'is-invalid': submitted && titleControl.invalid }" />
+        <div *ngIf="submitted" class="invalid-feedback">
+            <div *ngIf="titleControl.hasError('required')">{{ "form.title.required" | translate }}</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <textarea
+            formControlName="description"
+            class="form-control common-input"
+            [placeholder]=" 'form.description' | translate "
+            [ngClass]="{ 'is-invalid': submitted && descriptionControl.invalid }">
+        </textarea>
+        <div *ngIf="submitted" class="invalid-feedback">
+            <div *ngIf="descriptionControl.hasError('required')">{{ "form.description.required" | translate }}</div>
+        </div>
+    </div>
+    <button mat-flat-button color="primary" class="add-todo">{{ "form.add.todo" | translate }}</button>
+</form>
