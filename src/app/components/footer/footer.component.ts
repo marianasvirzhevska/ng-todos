@@ -16,4 +16,8 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  checkLang(lang: string): boolean {
+    return this.translate.currentLang === lang;
+  }
 }

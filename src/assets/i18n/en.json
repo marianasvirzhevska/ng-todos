@@ -42,6 +42,7 @@
         "own.todos": "Only my Todos",
         "all": "All",
         "pending": "Pending",
-        "done": "Done"
+        "done": "Done",
+        "cancel": "Remove filters"
     }
 }

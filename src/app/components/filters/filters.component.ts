@@ -1,15 +1,10 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { EventEmitter } from 'events';
 
 import { User, AuthService } from '../../shared/services/auth.service';
 
-export interface IFilter {
-  search?: string;
-  status?: boolean | object;
-  userId?: number;
-}
+import { IFilter } from './filters.interface';
 
 @Component({
   selector: 'app-filters',
@@ -51,7 +46,7 @@ export class FiltersComponent implements OnInit {
       }
 
       console.log('this.filterObj', this.filterObj);
-      // this.onFiltersChange.emit('change', this.filterObj);
+      this.onFiltersChange.emit(this.filterObj);
      });
   }
 

@@ -114,13 +114,15 @@ img {
   box-shadow: none;
   background-color: transparent;
   color: $grey-main;
+  font-weight: 400;
   &:hover {
     color: $black;
     box-shadow: $shadow-small;
   }
 
-  .selected {
+  &.selected {
     color: $black;
+    font-weight: 500;
   }
 }
 

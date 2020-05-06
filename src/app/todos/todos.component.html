@@ -22,10 +22,16 @@
             (formSubmit)="toggleForm()">
         </app-todo-form>
 
-        <app-filters></app-filters>
+        <app-filters (onFiltersChange)="onFiltersChange($event)"></app-filters>
+        <button *ngIf="filtersObj"
+            mat-stroked-button
+            color="warn"
+            (click)="clearFilters()"
+            class="cancel-filters">{{ 'filters.cancel' | translate}}</button>
         <div *ngIf="!loading" class="todos__wrapper">
             <ul *ngIf="todosService.todos.length; else noTodos" class="todos__list">
-                <li *ngFor="let todo of todosService.todos | todosFilter: 'e': null: null" class="todos__item">
+                <li *ngFor="let todo of todosService.todos | todosFilter: filtersObj "
+                class="todos__item">
                     <app-todo-item [todo]="todo"></app-todo-item>
                 </li>
             </ul>
