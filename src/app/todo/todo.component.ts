@@ -1,6 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+
 import { TodosService, Todo } from '../shared/services/todos.service';
+import { User, AuthService } from '../shared/services/auth.service';
+import { EditDialogComponent } from '../components/edit-dialog/edit-dialog.component';
 
 @Component({
   selector: 'app-todo',
@@ -11,14 +15,18 @@ export class TodoComponent implements OnInit {
   private id: number;
   loading = false;
   todo: Todo;
+  private user: User;
   isOwn: boolean;
 
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private todosService: TodosService,
+    private authService: AuthService,
+    public dialog: MatDialog,
     ) {
     this.id = +this.activatedRoute.snapshot.params.id;
+    this.authService.user.subscribe(x => this.user = x);
   }
 
   ngOnInit(): void {
@@ -27,8 +35,7 @@ export class TodoComponent implements OnInit {
   }
 
   checkOwner(userId: number): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return user.id === userId;
+    return this.user.id === userId;
   }
 
   handleDone(id: number) {
@@ -39,8 +46,10 @@ export class TodoComponent implements OnInit {
     this.todosService.removeTodo(id);
   }
 
-  editTodo(id: number) {
-    console.log('edit clicked');
+  openDialog(id: number): void {
+    this.dialog.open(EditDialogComponent, {
+      width: '600px',
+      data: id,
+    });
   }
-
 }

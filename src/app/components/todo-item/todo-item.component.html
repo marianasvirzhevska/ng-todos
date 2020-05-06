@@ -3,8 +3,8 @@
         <div class="todo-item__status" [ngClass]="{'done': todo.completed}"></div>
         <a class="todo-item__item-label" [routerLink]="['/todo', todo.id]" routerLinkActive="active">{{ todo.title }}</a>
     </div>
-    <div class="todo-item__actions">
-        <button mat-icon-button aria-label="Edit" (click)="editTodo(todo.id)">
+    <div *ngIf="isOwn" class="todo-item__actions">
+        <button mat-icon-button aria-label="Edit" (click)="openDialog(todo.id)">
             <mat-icon color="accent" class="todo-action">create</mat-icon>
         </button>
         <button mat-icon-button aria-label="Delete" (click)="removeTodo(todo.id)">

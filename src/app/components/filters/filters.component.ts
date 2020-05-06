@@ -45,7 +45,6 @@ export class FiltersComponent implements OnInit {
         this.filterObj.userId = this.user.id;
       }
 
-      console.log('this.filterObj', this.filterObj);
       this.onFiltersChange.emit(this.filterObj);
      });
   }

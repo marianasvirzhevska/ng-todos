@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Edit Todo</h1>
+<div mat-dialog-content>
+    <form 
+        [formGroup]="todoEditForm"
+        (ngSubmit)="onSubmit()" 
+        class="todos-form">
+        <div class="form-group">
+            <input
+                formControlName="title"
+                class="form-control common-input"
+                [placeholder]=" 'form.title' | translate "
+                [ngClass]="{ 'is-invalid': submitted && titleControl.invalid }" />
+            <div *ngIf="submitted" class="invalid-feedback">
+                <div *ngIf="titleControl.hasError('required')">{{ "form.title.required" | translate }}</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <textarea
+                formControlName="description"
+                class="form-control common-input"
+                [placeholder]=" 'form.description' | translate "
+                [ngClass]="{ 'is-invalid': submitted && descriptionControl.invalid }">
+            </textarea>
+            <div *ngIf="submitted" class="invalid-feedback">
+                <div *ngIf="descriptionControl.hasError('required')">{{ "form.description.required" | translate }}</div>
+            </div>
+        </div>
+        <button mat-flat-button color="primary" class="add-todo">{{ "form.edit.todo" | translate }}</button>
+    </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="handleCancel()">Cancel</button>
+</div>

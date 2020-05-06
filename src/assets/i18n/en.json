@@ -4,7 +4,8 @@
         "title": "Enter todo title",
         "title.required": "Todo title is required",
         "description": "Enter todo description",
-        "description.required": "Todo description is required"
+        "description.required": "Todo description is required",
+        "edit.todo": "Edit todo"
     },
     "login": {
         "title": "Log In",

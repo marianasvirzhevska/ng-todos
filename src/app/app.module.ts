@@ -35,6 +35,7 @@ import { RegisterComponent } from './register/register.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { FiltersComponent } from './components/filters/filters.component';
+import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { FiltersComponent } from './components/filters/filters.component';
     TodoItemComponent,
     TodoComponent,
     FiltersComponent,
+    EditDialogComponent,
   ],
   imports: [
     BrowserModule,

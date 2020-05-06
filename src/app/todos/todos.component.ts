@@ -15,7 +15,7 @@ export class TodosComponent implements OnInit {
   filtersObj: IFilter;
 
   constructor(
-    public todosService: TodosService
+    public todosService: TodosService,
   ) {}
 
   ngOnInit(): void {
@@ -36,4 +36,5 @@ export class TodosComponent implements OnInit {
   clearFilters() {
     this.filtersObj = null;
   }
+
 }
