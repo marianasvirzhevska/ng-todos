@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 
-import { TranslationsService } from 'src/app/shared/services/translations.service';
-import { LANGUAGES } from 'src/app/shared/constants/translations';
+import { TranslationsService } from 'src/app/services/translations.service';
+import { LANGUAGES } from 'src/app/constants/translations';
 
 interface ILang {
   value: string;

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Todo } from '../shared/services/todos.service';
+import { Todo } from '../services/todos.service';
 import { IFilter } from '../components/filters/filters.interface';
 
 
@@ -9,7 +9,7 @@ import { IFilter } from '../components/filters/filters.interface';
 export class TodosFilterPipe implements PipeTransform {
     transform(todos: Todo[], args: IFilter): Todo[] {
         if (args) {
-            const { search, status, userId } = args; 
+            const { search, status, userId } = args;
 
             const filteredByStatus = todos.filter((todo) => {
                 if (typeof(status) === 'boolean') {

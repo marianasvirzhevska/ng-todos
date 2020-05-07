@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
-import { AuthService } from '../shared/services/auth.service';
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -21,8 +21,8 @@ export class RegisterComponent implements OnInit {
       private formBuilder: FormBuilder,
       private route: ActivatedRoute,
       private router: Router,
-      private authService: AuthService,
-      public translate: TranslateService
+      private authService: AuthService
+      // no need to import services for pipes
   ) {
   }
 
@@ -43,6 +43,7 @@ export class RegisterComponent implements OnInit {
       this.loading = true;
 
       this.authService.register(this.registerForm.value)
+        // first() is redundunt here
           .pipe(first())
           .subscribe(
               data => {
@@ -54,7 +55,7 @@ export class RegisterComponent implements OnInit {
               });
   }
 
-  checkPasswords(controlName: string, matchingControlName: string) {
+  private checkPasswords(controlName: string, matchingControlName: string) {
     return (formGroup: FormGroup) => {
         const control = formGroup.controls[controlName];
         const matchingControl = formGroup.controls[matchingControlName];
@@ -71,14 +72,14 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  private buildForm() {
+  private buildForm(): FormGroup {
     return this.formBuilder.group(
         {
             email: ['', [Validators.required, Validators.email]],
             username: ['', Validators.required],
             password: ['', [Validators.required, Validators.minLength(6)]],
             confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
-        }, 
+        },
         {
             validator: this.checkPasswords('password', 'confirmPassword')
         }

@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 
-import { Todo, TodosService } from '../../shared/services/todos.service';
+import { Todo, TodosService } from '../../services/todos.service';
 
 export interface DialogData {
   title: string;

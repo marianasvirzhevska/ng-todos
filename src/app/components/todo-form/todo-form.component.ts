@@ -2,8 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Todo, TodosService } from '../../shared/services/todos.service';
-import { User, AuthService } from '../../shared/services/auth.service';
+import { Todo, TodosService } from '../../services/todos.service';
+import { User, AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-todo-form',
@@ -20,7 +20,7 @@ export class TodoFormComponent implements OnInit {
   constructor(
     private todoService: TodosService,
     private authService: AuthService,
-    public translate:  TranslateService,
+    public translate: TranslateService,
     private formBuilder: FormBuilder
   ) {}
 

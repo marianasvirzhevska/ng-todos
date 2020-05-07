@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
-import { TodosService, Todo } from '../shared/services/todos.service';
-import { User, AuthService } from '../shared/services/auth.service';
+import { TodosService, Todo } from '../services/todos.service';
+import { User, AuthService } from '../services/auth.service';
 import { EditDialogComponent } from '../components/edit-dialog/edit-dialog.component';
 
 @Component({
@@ -31,16 +31,12 @@ export class TodoComponent implements OnInit {
 
   ngOnInit(): void {
     this.todo = this.todosService.getTodoItem(this.id);
-    this.isOwn = this.checkOwner(this.todo.userId);
-  }
-
-  checkOwner(userId: number): boolean {
-    return this.user.id === userId;
+    this.isOwn = this.user.id === this.todo.userId;
   }
 
   handleDone(id: number) {
     this.todosService.markDone(id);
-  } 
+  }
 
   removeTodo(id: number) {
     this.todosService.removeTodo(id);

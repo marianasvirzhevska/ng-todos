@@ -39,6 +39,7 @@ import { FiltersComponent } from './components/filters/filters.component';
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 import { LangSwitcherComponent } from './components/lang-switcher/lang-switcher.component';
 
+// move to separate modules
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,11 +66,12 @@ import { LangSwitcherComponent } from './components/lang-switcher/lang-switcher.
     SharedModule,
 
     BrowserAnimationsModule,
+    //create separate metiral module
     MatButtonModule,
     MatCheckboxModule,
     MatIconModule,
     MatDialogModule,
-    MatSnackBarModule, 
+    MatSnackBarModule,
     MatMenuModule,
     MatRadioModule,
     MatSelectModule,

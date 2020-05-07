@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
-import { AuthService } from '../shared/services/auth.service';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({

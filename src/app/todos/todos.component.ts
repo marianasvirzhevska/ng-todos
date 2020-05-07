@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { TodosService } from '../shared/services/todos.service';
+import { TodosService } from '../services/todos.service';
 
 import { IFilter } from '../components/filters/filters.interface';
 import { FiltersComponent } from '../components/filters/filters.component';

@@ -2,14 +2,14 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { User, AuthService } from '../../shared/services/auth.service';
+import { User, AuthService } from '../../services/auth.service';
 
 import { IFilter } from './filters.interface';
-import { STATUSES } from 'src/app/shared/constants/statuses';
+import { STATUSES } from 'src/app/constants/statuses';
 
 interface IStatus {
-  value: string,
-  label: string,
+  value: string;
+  label: string;
 }
 
 @Component({
@@ -26,7 +26,7 @@ export class FiltersComponent implements OnInit {
     {value: STATUSES.DONE, label: 'filters.done'},
   ];
 
-  filterObj:IFilter;
+  filterObj: IFilter;
 
   @Output() onFiltersChange = new EventEmitter();
 
@@ -34,7 +34,7 @@ export class FiltersComponent implements OnInit {
 
 
   constructor(
-    public translate:  TranslateService,
+    public translate: TranslateService,
     private formBuilder: FormBuilder,
     private authService: AuthService,
   ) {

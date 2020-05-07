@@ -21,10 +21,10 @@ const mocDesc = ' Many desktop publishing packages and web page editors now use 
 
 @Injectable({providedIn: 'root'})
 export class TodosService {
+    // make this private and expose by getter
     public todos: Todo[] = [];
 
-    constructor(private http: HttpClient ) {
-
+    constructor(private http: HttpClient) {
     }
 
     getTodos(): Observable<Todo[]> {
@@ -42,7 +42,7 @@ export class TodosService {
         .pipe(tap(todos => {
             todos.forEach(element => {
                 if (!element.description) {
-                    element.description = mocDesc; 
+                    element.description = mocDesc;
                 }
             });
 
@@ -61,18 +61,18 @@ export class TodosService {
 
     removeTodo(id: number) {
         this.todos = this.todos.filter(t => t.id !== id);
-        localStorage.setItem('todos', JSON.stringify(this.todos))
+        localStorage.setItem('todos', JSON.stringify(this.todos));
     }
 
     addTodo(todo: Todo) {
         this.todos.push(todo);
-        localStorage.setItem('todos', JSON.stringify(this.todos))
+        localStorage.setItem('todos', JSON.stringify(this.todos));
     }
 
     editTodo(todo: Todo) {
         const index = this.todos.findIndex(t => t.id === todo.id);
         this.todos[index] = { ...todo };
-        localStorage.setItem('todos', JSON.stringify(this.todos))
+        localStorage.setItem('todos', JSON.stringify(this.todos));
     }
 
     getTodoItem(id: number) {
@@ -80,7 +80,7 @@ export class TodosService {
         // return this.http.get<any>(`${config.apiUrl}/todos/${id}`)
         // .pipe(tap(todo => todo));
 
-        if (!this.todos.length) {            
+        if (!this.todos.length) {
             const storageTodos = JSON.parse(localStorage.getItem('todos'));
             this.todos = storageTodos;
         }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslationsService } from 'src/app/shared/services/translations.service';
-import { LANGUAGES } from 'src/app/shared/constants/translations';
-import { AuthService, User } from 'src/app/shared/services/auth.service';
+import { TranslationsService } from 'src/app/services/translations.service';
+import { LANGUAGES } from 'src/app/constants/translations';
+import { AuthService, User } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-footer',
@@ -11,6 +11,7 @@ import { AuthService, User } from 'src/app/shared/services/auth.service';
 export class FooterComponent implements OnInit {
   languages = LANGUAGES;
   user: User;
+  currentLanguage: string;
 
   constructor(
     private translate: TranslationsService,
@@ -19,10 +20,8 @@ export class FooterComponent implements OnInit {
 
   ngOnInit() {
     this.authService.user.subscribe(x => this.user = x);
-  }
-  
-  checkLang(lang: string): boolean {
-    return this.translate.getCurrentLang() === lang;
+    this.currentLanguage = this.translate.getCurrentLang();
+    setTimeout(() => this.currentLanguage = this.languages.RU, 2000);
   }
 
   setLang(code: string) {

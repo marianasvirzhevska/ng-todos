@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 
-import { TodosService, Todo } from '../../shared/services/todos.service';
-import { User, AuthService } from '../../shared/services/auth.service';
+import { TodosService, Todo } from '../../services/todos.service';
+import { User, AuthService } from '../../services/auth.service';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 
 @Component({
@@ -15,10 +15,12 @@ export class TodoItemComponent implements OnInit {
   private user: User;
   isOwn: boolean;
 
+  @Input() todo: Todo;
+
   constructor(
     public todosService: TodosService,
     private authService: AuthService,
-    public translate:  TranslateService,
+    public translate: TranslateService,
     public dialog: MatDialog,
   ) { }
 
@@ -26,12 +28,6 @@ export class TodoItemComponent implements OnInit {
     this.authService.user.subscribe(x => this.user = x);
     this.isOwn = this.todo.userId === this.user.id;
   }
-
-  @Input() todo: Todo;
-
-  onChange(id: number) {
-    this.todosService.markDone(id);
-  } 
 
   removeTodo(id: number) {
     this.todosService.removeTodo(id);
