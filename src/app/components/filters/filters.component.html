@@ -13,8 +13,8 @@
             class="filters__radio-group"
             formControlName="filtersStatus"
             >
-            <mat-radio-button class="filters__item radio-item" *ngFor="let status of statuses" [value]="status">
-                {{ status | translate }}
+            <mat-radio-button class="filters__item radio-item" *ngFor="let status of statuses" [value]="status.value">
+                {{ status.label | translate }}
             </mat-radio-button>
         </mat-radio-group> 
         <div class="filters__item">

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService, User } from './shared/services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
      selector: 'app-root',
@@ -12,6 +13,7 @@ export class AppComponent {
 
     constructor(
         private router: Router,
+        private translateService: TranslateService,
         private authenticationService: AuthService
     ) {
         this.authenticationService.user.subscribe(x => this.user = x);

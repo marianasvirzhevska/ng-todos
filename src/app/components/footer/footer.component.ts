@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslationsService } from 'src/app/shared/services/translations.service';
+import { LANGUAGES } from 'src/app/shared/constants/translations';
+import { AuthService, User } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,17 +9,23 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  constructor(public translate: TranslateService
-  ) {
-    translate.addLangs([ 'en', 'ua', 'ru']);
-    translate.setDefaultLang('en');
-    translate.use('en');
-  }
+  languages = LANGUAGES;
+  user: User;
 
-  ngOnInit(): void {
-  }
+  constructor(
+    private translate: TranslationsService,
+    public authService: AuthService,
+  ) {}
 
+  ngOnInit() {
+    this.authService.user.subscribe(x => this.user = x);
+  }
+  
   checkLang(lang: string): boolean {
-    return this.translate.currentLang === lang;
+    return this.translate.getCurrentLang() === lang;
+  }
+
+  setLang(code: string) {
+    this.translate.setLanguage(code);
   }
 }

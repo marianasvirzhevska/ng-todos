@@ -1,0 +1,11 @@
+
+.not-found {
+    min-height: calc(100vh - 60px - 130px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    p {
+        font-size: 45px;
+    }
+}

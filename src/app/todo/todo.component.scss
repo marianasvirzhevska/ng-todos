@@ -2,9 +2,12 @@
 
 .todo-page {
     padding: 40px 0;
+    background-color: $grey-background;
+    min-height: calc(100vh - 60px - 138px);
 }
 
 .todo {
+    margin: 20px 0;
 
     &__title-row {
         display: flex;
@@ -27,5 +30,15 @@
         button {
             margin-right: 20px;
         }
+    }
+}
+
+.back {
+    margin-bottom: 25px;
+    color: $grey-main;
+    display: inline-block;
+    
+    &:hover {
+        color: $accent-blue;
     }
 }

@@ -4,7 +4,8 @@
         "title": "Enter todo title",
         "title.required": "Todo title is required",
         "description": "Enter todo description",
-        "description.required": "Todo description is required"
+        "description.required": "Todo description is required",
+        "edit.todo": "Edit todo"
     },
     "login": {
         "title": "Log In",
@@ -44,5 +45,23 @@
         "pending": "Pending",
         "done": "Done",
         "cancel": "Remove filters"
-    }
+    },
+    "back": "Back",
+    "lang": {
+        "ua": "UA",
+        "ru": "RU",
+        "en": "EN"
+    },
+    "todo": {
+        "title": "Todos list",
+        "add": "Add Todo",
+        "cancel": "Cancel",
+        "not.found": "No todos now.",
+        "mark.done": "Mark as done",
+        "edit": "Edit",
+        "delete": "Delete",
+        "details": "Todo details",
+        "edit.title": "Edit Todo"
+    },
+    "loading": "Loading..."
 }

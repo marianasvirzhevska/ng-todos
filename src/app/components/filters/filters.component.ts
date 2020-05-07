@@ -1,10 +1,16 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { User, AuthService } from '../../shared/services/auth.service';
 
 import { IFilter } from './filters.interface';
+import { STATUSES } from 'src/app/shared/constants/statuses';
+
+interface IStatus {
+  value: string,
+  label: string,
+}
 
 @Component({
   selector: 'app-filters',
@@ -14,11 +20,18 @@ import { IFilter } from './filters.interface';
 export class FiltersComponent implements OnInit {
   filtersForm: FormGroup;
   user: User;
-  statuses: string[] = ['filters.all', 'filters.pending', 'filters.done'];
+  statuses: IStatus[] = [
+    {value: STATUSES.ALL, label: 'filters.all'},
+    {value: STATUSES.PENDING, label: 'filters.pending'},
+    {value: STATUSES.DONE, label: 'filters.done'},
+  ];
 
   filterObj:IFilter;
 
   @Output() onFiltersChange = new EventEmitter();
+
+  @Input() clearFilters;
+
 
   constructor(
     public translate:  TranslateService,
@@ -34,6 +47,14 @@ export class FiltersComponent implements OnInit {
     this.onChanges();
   }
 
+  reset() {
+    this.filtersForm.setValue({
+      searchString: '',
+      filtersStatus: STATUSES.ALL,
+      ownTodos: '',
+    });
+  }
+
   private onChanges(): void {
     this.filtersForm.valueChanges.subscribe(val => {
       this.filterObj = {
@@ -45,13 +66,12 @@ export class FiltersComponent implements OnInit {
         this.filterObj.userId = this.user.id;
       }
 
-      console.log('this.filterObj', this.filterObj);
       this.onFiltersChange.emit(this.filterObj);
      });
   }
 
   private getStatus(obj): boolean | object {
-    const status = obj.filtersStatus.split('.')[1];
+    const status = obj.filtersStatus;
     switch (status) {
       case 'all':
         return null;
@@ -68,7 +88,7 @@ export class FiltersComponent implements OnInit {
     return this.formBuilder.group(
       {
         searchString: '',
-        filtersStatus: '',
+        filtersStatus: STATUSES.ALL,
         ownTodos: '',
       }
     )
