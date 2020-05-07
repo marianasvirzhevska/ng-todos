@@ -27,7 +27,7 @@ export class TodosFilterPipe implements PipeTransform {
                 }
             });
 
-            if (!search.trim()) {
+            if (!search?.trim()) {
                 return filteredByUser;
             }
 

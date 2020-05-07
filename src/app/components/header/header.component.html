@@ -5,6 +5,9 @@
             <app-lang-switcher></app-lang-switcher>
             <div class="header__username">{{ user.username }}</div>
             <button mat-stroked-button class="button-logout" (click)="logout()">{{ "logout" | translate }}</button>
+            <button mat-icon-button class="logout-mobile" aria-label="Logout" (click)="logout()">
+                <mat-icon>exit_to_app</mat-icon>
+            </button>
         </div>
     </div>
 </div>

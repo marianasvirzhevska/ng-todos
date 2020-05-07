@@ -69,6 +69,20 @@ img {
     color: $white;
     border: 1px solid $white;
   }
+
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
+.mat-icon-button.logout-mobile {
+  display: none;
+  color: $white;
+  // width: 20px;
+
+  @media (max-width: 480px) {
+    display: block;
+  }
 }
 
 // All errors color
@@ -83,10 +97,8 @@ img {
       &:hover {
         color: $accent-red;
       }
-
     }
   }
-
 }
 
 .mat-primary.add-todo{
@@ -126,3 +138,26 @@ img {
   }
 }
 
+
+.mat-form-field.lang-switcher {
+  margin-right: 30px;
+  max-width: 50px;
+
+  .mat-form-field-underline {
+    display: none;
+  }
+
+}
+
+.mat-select.lang-select {
+  .mat-select-value {
+    color: $white;
+  }
+  .mat-select-arrow {
+    color: $white;
+  }
+}
+
+.mat-primary .lang-option  .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: $accent-blue;
+}

@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Edit Todo</h1>
+<h1 mat-dialog-title>{{ 'todo.edit.title' | translate }}</h1>
 <div mat-dialog-content>
     <form 
         [formGroup]="todoEditForm"
@@ -29,5 +29,5 @@
     </form>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="handleCancel()">Cancel</button>
+  <button mat-button (click)="handleCancel()">{{ 'todo.cancel' | translate }}</button>
 </div>

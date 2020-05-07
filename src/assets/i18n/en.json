@@ -48,8 +48,20 @@
     },
     "back": "Back",
     "lang": {
-        "ua": "ua",
-        "ru": "ru",
-        "en": "en"
-    }
+        "ua": "UA",
+        "ru": "RU",
+        "en": "EN"
+    },
+    "todo": {
+        "title": "Todos list",
+        "add": "Add Todo",
+        "cancel": "Cancel",
+        "not.found": "No todos now.",
+        "mark.done": "Mark as done",
+        "edit": "Edit",
+        "delete": "Delete",
+        "details": "Todo details",
+        "edit.title": "Edit Todo"
+    },
+    "loading": "Loading..."
 }

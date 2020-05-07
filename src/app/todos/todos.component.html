@@ -1,19 +1,19 @@
 <div class="todos">
     <div class="container todos__container">
         <div class="title-row">
-            <h1 class="title">Todos list</h1>
+            <h1 class="title">{{ 'todo.title' | translate }}</h1>
             <button *ngIf="!showForm"
                 mat-flat-button
                 color="primary"
                 (click)="toggleForm()"
                 class="add-todo">
-                Add Todo
+                {{ 'todo.add' | translate }}
             </button>
             <button *ngIf="showForm"
                 mat-stroked-button
                 color="accent"
                 (click)="toggleForm()">
-                Cancel
+                {{ 'todo.cancel' | translate }}
             </button>
         </div>
 
@@ -23,7 +23,7 @@
         </app-todo-form>
 
         <app-filters (onFiltersChange)="onFiltersChange($event)"></app-filters>
-        <button *ngIf="filtersObj"
+        <button *ngIf="isFilterVisible()"
             mat-stroked-button
             color="warn"
             (click)="clearFilters()"
@@ -36,10 +36,10 @@
                 </li>
             </ul>
             <ng-template #noTodos>
-                <p class="todos__not-found">No todos now.</p>
+                <p class="todos__not-found">{{ 'todo.not.found' | translate }}</p>
             </ng-template>
         </div>
-        <p *ngIf="loading" class="loading">Loading...</p>
+        <p *ngIf="loading" class="loading">{{ 'loading' | translate }}</p>
     </div>
 </div>
 

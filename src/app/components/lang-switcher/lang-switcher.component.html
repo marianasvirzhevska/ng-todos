@@ -1,7 +1,9 @@
-<mat-form-field>
+<mat-form-field class="lang-switcher">
     <mat-select [(value)]="selected"
-        (selectionChange)="onSelect($event)">
+      class="lang-select"
+      (selectionChange)="onSelect($event)">
       <mat-option *ngFor="let lang of langs"
+        class="lang-option"
         [value]="lang.value">
         {{ lang.label | translate }}
       </mat-option>

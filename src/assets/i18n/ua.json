@@ -1,6 +1,11 @@
 {
     "form": {
-        "add.todo": "Додати завдання"
+        "add.todo": "Додати завдання",
+        "title": "Введіть назву завдання",
+        "title.required": "Поле Назва обо'язкове",
+        "description": "Введіть опис завдання",
+        "description.required": "Поле опис обо'язкове",
+        "edit.todo": "Редагувати завдання"
     },
     "login": {
         "title": "Авторизуйтесь",
@@ -8,14 +13,55 @@
         "name.required": "Поле Ім'я обов'язкове",
         "password": "Пароль",
         "password.required": "Поле Пароль обов'язкове",
-        "login": "Увійти" 
+        "login": "Увійти",
+        "no.account": "Немає акаунту?",
+        "register": "Реєстрація"
     },
     "footer": {
         "copyright": "Todo App. Всі права захищені."
     },
+    "register": {
+        "title": "Реєстрація",
+        "email": "Email",
+        "email.required": "Поле Email обов'язкове",
+        "name": "Введіть ім'я користувача",
+        "name.required": "Поле Ім'я обов'язкове",
+        "password": "Пароль",
+        "password.required": "Поле пароль обов'язкове",
+        "password.confirm": "Повторіть пароль",
+        "password.confirm.required": "Необхідно повторити пароль",
+        "register": "Зареєструватись",
+        "have.account": "Уже зареєстровані?",
+        "login": "Увійти",
+        "invalid.email": "Введіть коректний Email",
+        "password.min.length": "Пароль має містити не менше 6 символів",
+        "must.match": "Паролі не співпадають"
+    },
+    "logout": "Вихід",
+    "filters": {
+        "search": "Пошук...",
+        "own.todos": "Тільки мої завдання",
+        "all": "Всі",
+        "pending": "В очікуванні",
+        "done": "Завершені",
+        "cancel": "Прибрати фільтри"
+    },
+    "back": "Назад",
     "lang": {
         "ua": "Укр",
         "ru": "Рус",
         "en": "Англ"
-    }
+    },
+    "todo": {
+        "title": "Список завдань",
+        "add": "Додати завдання",
+        "cancel": "Відмнити",
+        "not.found": "Немає завдань",
+        "mark.done": "Завершити",
+        "edit": "Редагувати",
+        "delete": "Видалити",
+        "details": "Деталі завдання",
+        "edit.title": "Редагувати завдання"
+    },
+    "loading": "Завантаження..."
 }

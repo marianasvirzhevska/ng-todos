@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { TodosService } from '../shared/services/todos.service';
 
 import { IFilter } from '../components/filters/filters.interface';
+import { FiltersComponent } from '../components/filters/filters.component';
 
 @Component({
   selector: 'app-todos',
@@ -12,7 +13,9 @@ import { IFilter } from '../components/filters/filters.interface';
 export class TodosComponent implements OnInit {
   loading = true;
   showForm = false;
-  filtersObj: IFilter;
+  filtersObj: IFilter = {};
+
+  @ViewChild(FiltersComponent) filters: FiltersComponent;
 
   constructor(
     public todosService: TodosService,
@@ -30,11 +33,16 @@ export class TodosComponent implements OnInit {
   }
 
   onFiltersChange(filter: IFilter) {
+    console.log(filter)
     this.filtersObj = filter;
   }
 
-  clearFilters() {
-    this.filtersObj = null;
+  isFilterVisible() {
+    const { status, search, userId } = this.filtersObj;
+    return search || userId || status;
   }
 
+  clearFilters() {
+    this.filters.reset();
+  }
 }
