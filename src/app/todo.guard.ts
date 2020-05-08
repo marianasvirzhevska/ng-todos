@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Router, CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 
 import { StorageService } from './services/storage.service';
 
@@ -10,8 +10,8 @@ export class TodoGuard implements CanActivate {
         private storage: StorageService,
     ) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const todoId = route.params.id
+    canActivate(route: ActivatedRouteSnapshot) {
+        const todoId = +route.params.id
         const todos = this.storage.getItem('todos');
         const todo = todos.find((x) => x.id === todoId);
 

@@ -27,8 +27,8 @@
         </div>
 
         <div *ngIf="!loading" class="todos__wrapper">
-            <ul *ngIf="todosService.todos.length; else noTodos" class="todos__list">
-                <li *ngFor="let todo of todosService.todos | todosFilter: filtersObj | todosSearch: search "
+            <ul *ngIf="todos.length; else noTodos" class="todos__list">
+                <li *ngFor="let todo of todos | todosFilter: filtersObj | todosSearch: search "
                 class="todos__item">
                     <app-todo-item [todo]="todo"></app-todo-item>
                 </li>

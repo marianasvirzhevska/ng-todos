@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { tap, map } from 'rxjs/operators'
+import { Observable, of, BehaviorSubject } from 'rxjs';
+import { tap, map } from 'rxjs/operators';
+import { StorageService } from './storage.service';
 
 export interface Todo {
     id: number,
@@ -21,58 +22,41 @@ const mocDesc = ' Many desktop publishing packages and web page editors now use 
 
 @Injectable({providedIn: 'root'})
 export class TodosService {
-    // make this private and expose by getter
-    public todos: Todo[] = [];
+    private todosSubject = new BehaviorSubject<Todo[]>([])
+    private todos: Todo[] = [];
 
-    constructor(private http: HttpClient) {
+    constructor(
+        private http: HttpClient,
+        private storage: StorageService,
+    ) {
+        this.initTodos();
     }
 
-    getTodos(): Observable<Todo[]> {
-        const todos = JSON.parse(localStorage.getItem('todos'));
-        if (todos) {
-            this.todos = todos;
-            return of(todos);
-        } else {
-            return this.fetchTodos();
-        }
-    }
-
-    fetchTodos(): Observable<Todo[]> {
-        return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos')
-        .pipe(tap(todos => {
-            todos.forEach(element => {
-                if (!element.description) {
-                    element.description = mocDesc;
-                }
-            });
-
-            localStorage.setItem('todos', JSON.stringify(todos));
-
-            return this.todos = todos;
-            }
-         ))
-    }
-
-    markDone(id: number) {
-        const index = this.todos.findIndex(t => t.id === id);
-        this.todos[index].completed = true;
-        localStorage.setItem('todos', JSON.stringify(this.todos));
-    }
-
-    removeTodo(id: number) {
-        this.todos = this.todos.filter(t => t.id !== id);
-        localStorage.setItem('todos', JSON.stringify(this.todos));
+    getTodos$() {
+        return this.todosSubject.asObservable();
     }
 
     addTodo(todo: Todo) {
         this.todos.push(todo);
-        localStorage.setItem('todos', JSON.stringify(this.todos));
+        this.updateTodos();
     }
+
+    removeTodo(id: number) {
+        this.todos = this.todos.filter(t => t.id !== id);
+        this.updateTodos();
+    }
+
+    toggleDone(id: number) {
+        const item = this.todos.find(item => item.id === id);
+        item.completed = !item.completed;
+        this.updateTodos();
+    }
+
 
     editTodo(todo: Todo) {
         const index = this.todos.findIndex(t => t.id === todo.id);
         this.todos[index] = { ...todo };
-        localStorage.setItem('todos', JSON.stringify(this.todos));
+        this.updateTodos();
     }
 
     getTodoItem(id: number) {
@@ -81,11 +65,50 @@ export class TodosService {
         // .pipe(tap(todo => todo));
 
         if (!this.todos.length) {
-            const storageTodos = JSON.parse(localStorage.getItem('todos'));
+            const storageTodos = this.storage.getItem('todos');
             this.todos = storageTodos;
         }
 
         return this.todos.find(x => x.id === id);
     }
 
+    private updateTodos() {
+        const todos = [...this.todos];
+        this.todos = todos;
+        this.storage.setItem('todos', todos);
+        this.todosSubject.next(todos);
+    }
+
+    private initTodos(): void {
+        this.getTodos()
+            .subscribe((todos) => {
+                this.todos = todos;
+                this.todosSubject.next(todos);
+            })
+    }
+
+    private getTodos(): Observable<Todo[]> {
+        const todos = this.storage.getItem('todos');
+        if (todos) {
+            return of(todos);
+        }
+        return this.fetchTodos();
+    }
+
+    private fetchTodos(): Observable<Todo[]> {
+        const url = 'https://jsonplaceholder.typicode.com/todos'
+
+        return this.http.get<Todo[]>(url).pipe(
+            map(todos => {
+                return todos.map(todo => {
+                    const description = todo.description || mocDesc;
+                    return {
+                        ...todo,
+                        description
+                    };
+                })
+            }),
+            tap((todos) => this.storage.setItem('todos', todos)),
+        );
+    }
 }

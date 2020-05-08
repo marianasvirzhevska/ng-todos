@@ -11,10 +11,12 @@
             <div class="todo__description">{{ todo.description }}</div>
             <div *ngIf="isOwn" class="todo__actions">
                 <button
-                    *ngIf="!todo.completed"
                     mat-flat-button
                     color="accent"
-                    (click)="handleDone(todo.id)">{{ 'todo.mark.done' | translate }}</button>
+                    (click)="toggleDone(todo.id)">
+                    <span *ngIf="!todo.completed">{{ 'todo.mark.done' | translate }}</span>
+                    <span *ngIf="todo.completed">{{ 'todo.mark.not.done' | translate }}</span>
+                </button>
                 <button
                     *ngIf="!todo.completed"
                     mat-stroked-button

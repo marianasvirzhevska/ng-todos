@@ -28,7 +28,8 @@ export class EditDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
   ngOnInit(): void {
-    this.todo = this.todoService.todos.find(x => +this.data === x.id);
+    // const todos = this.todoService.getStoredTodos();
+    // this.todo = todos.find(x => +this.data === x.id);
     this.todoEditForm = this.buildForm(this.todo);
   }
 

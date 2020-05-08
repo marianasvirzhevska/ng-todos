@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { TodosService } from '../services/todos.service';
+import { TodosService, Todo } from '../services/todos.service';
 
 import { IFilter } from './components/filters/filters.interface';
 import { FiltersComponent } from './components/filters/filters.component';
@@ -15,6 +15,7 @@ export class TodosComponent implements OnInit {
   showForm = false;
   filtersObj: IFilter;
   search: string;
+  todos: Todo[];
 
   @ViewChild(FiltersComponent) filters: FiltersComponent;
 
@@ -23,8 +24,9 @@ export class TodosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.todosService.getTodos()
-      .subscribe(() => {
+    this.todosService.getTodos$()
+      .subscribe((todos) => {
+        this.todos = todos;
         this.loading = false;
       });
   }

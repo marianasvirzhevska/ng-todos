@@ -34,8 +34,8 @@ export class TodoComponent implements OnInit {
     this.isOwn = this.user.id === this.todo.userId;
   }
 
-  handleDone(id: number) {
-    this.todosService.markDone(id);
+  toggleDone(id: number) {
+    this.todosService.toggleDone(id);
   }
 
   removeTodo(id: number) {

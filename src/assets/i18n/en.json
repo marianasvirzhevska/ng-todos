@@ -58,6 +58,7 @@
         "cancel": "Cancel",
         "not.found": "No todos now.",
         "mark.done": "Mark as done",
+        "todo.mark.not.done": "Mark as not done",
         "edit": "Edit",
         "delete": "Delete",
         "details": "Todo details",
