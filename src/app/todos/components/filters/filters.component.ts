@@ -1,8 +1,7 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { User, AuthService } from '../../services/auth.service';
+import { User, AuthService } from '../../../services/auth.service';
 
 import { IFilter } from './filters.interface';
 import { STATUSES } from 'src/app/constants/statuses';
@@ -30,11 +29,7 @@ export class FiltersComponent implements OnInit {
 
   @Output() onFiltersChange = new EventEmitter();
 
-  @Input() clearFilters;
-
-
   constructor(
-    public translate: TranslateService,
     private formBuilder: FormBuilder,
     private authService: AuthService,
   ) {
@@ -47,18 +42,19 @@ export class FiltersComponent implements OnInit {
     this.onChanges();
   }
 
-  reset() {
+  clearFilters(): void {
     this.filtersForm.setValue({
-      searchString: '',
       filtersStatus: STATUSES.ALL,
       ownTodos: '',
     });
+
+    this.filterObj = null;
+    this.onFiltersChange.emit(null);
   }
 
   private onChanges(): void {
     this.filtersForm.valueChanges.subscribe(val => {
       this.filterObj = {
-        search: val.searchString,
         status: this.getStatus(val),
       }
 
@@ -84,10 +80,9 @@ export class FiltersComponent implements OnInit {
     }
   }
 
-  private buildForm() {
+  private buildForm(): FormGroup {
     return this.formBuilder.group(
       {
-        searchString: '',
         filtersStatus: STATUSES.ALL,
         ownTodos: '',
       }

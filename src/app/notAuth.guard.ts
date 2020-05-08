@@ -4,7 +4,7 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 import { AuthService } from './services/auth.service';
 
 @Injectable({ providedIn: 'root' })
-export class AuthGuard implements CanActivate {
+export class NotAuthGuard implements CanActivate {
     constructor(
         private router: Router,
         private authService: AuthService
@@ -12,11 +12,11 @@ export class AuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const user = this.authService.currentUserValue;
-        if (user) {
+        if (!user) {
             return true;
         }
 
-        this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+        this.router.navigate(['/']);
         return false;
     }
 }

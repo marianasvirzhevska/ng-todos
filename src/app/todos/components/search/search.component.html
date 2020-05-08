@@ -1,0 +1,15 @@
+
+    <div class="search__row">
+        <input type="text"
+            class="search__input common-input"
+            [(ngModel)]="searchString"
+            (ngModelChange)="onSearch($event)"
+            [placeholder]=" 'filters.search' | translate ">
+        <button *ngIf="searchString"
+            class="clear-button"
+            mat-icon-button
+            aria-label="Clear"
+            (click)="clear()">
+            <mat-icon class="clear-icon">clear</mat-icon>
+        </button>
+    </div>

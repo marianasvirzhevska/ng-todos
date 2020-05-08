@@ -1,22 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
-import { AuthService } from './services/auth.service';
+import { StorageService } from './services/storage.service';
 
 @Injectable({ providedIn: 'root' })
-export class AuthGuard implements CanActivate {
+export class TodoGuard implements CanActivate {
     constructor(
         private router: Router,
-        private authService: AuthService
+        private storage: StorageService,
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const user = this.authService.currentUserValue;
-        if (user) {
+        const todoId = route.params.id
+        const todos = this.storage.getItem('todos');
+        const todo = todos.find((x) => x.id === todoId);
+
+        if (todo) {
             return true;
         }
 
-        this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+        this.router.navigate(['/']);
         return false;
     }
 }

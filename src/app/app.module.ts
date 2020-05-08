@@ -20,10 +20,13 @@ import { fakeBackendProvider } from './helpers/pseudo-backend';
 import { JwtInterceptor } from './helpers/jwt-interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { AuthGuard } from './auth.guard';
+import { NotAuthGuard } from './notAuth.guard';
+import { TodoGuard } from './todo.guard';
 
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.modules';
 import { TodosFilterPipe } from './shared/todos.filter.pipe';
+import { TodosSearchPipe } from './shared/todos.search.pipe';
 
 import { AppComponent } from './app.component';
 import { TodosComponent } from './todos/todos.component';
@@ -35,9 +38,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './register/register.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
-import { FiltersComponent } from './components/filters/filters.component';
+import { FiltersComponent } from './todos/components/filters/filters.component';
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 import { LangSwitcherComponent } from './components/lang-switcher/lang-switcher.component';
+import { SearchComponent } from './todos/components/search/search.component';
 
 // move to separate modules
 @NgModule({
@@ -56,6 +60,8 @@ import { LangSwitcherComponent } from './components/lang-switcher/lang-switcher.
     FiltersComponent,
     EditDialogComponent,
     LangSwitcherComponent,
+    SearchComponent,
+    TodosSearchPipe,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +87,8 @@ import { LangSwitcherComponent } from './components/lang-switcher/lang-switcher.
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
     AuthGuard,
+    NotAuthGuard,
+    TodoGuard,
     fakeBackendProvider
   ],
   bootstrap: [AppComponent]
