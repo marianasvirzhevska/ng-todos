@@ -2,7 +2,7 @@
 
 .todos {
     background-color: $grey-background;
-    min-height: calc(100vh - 60px - 80px);
+    min-height: calc(100vh - 60px - 60px);
 
     &__container {
         padding-top: 40px;
@@ -25,6 +25,20 @@
         background: $white;
     }
 
+    &__filters {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 20px 0 20px;
+        padding-top: 20px;
+        border-top: 1px solid $border;
+
+        @media(max-width: 480px) {
+            flex-direction: column;
+            align-items: stretch;
+        }
+    }
+
     &__not-found {
         
     }
@@ -32,7 +46,10 @@
     &__loading {
 
     }
-    
+}
+
+.clear {
+    padding-bottom: 30px;
 }
 
 .title-row {

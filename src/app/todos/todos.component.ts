@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { TodosService } from '../shared/services/todos.service';
+import { TodosService, Todo } from '../services/todos.service';
 
-import { IFilter } from '../components/filters/filters.interface';
-import { FiltersComponent } from '../components/filters/filters.component';
+import { IFilter } from './components/filters/filters.interface';
+import { FiltersComponent } from './components/filters/filters.component';
 
 @Component({
   selector: 'app-todos',
@@ -13,7 +13,9 @@ import { FiltersComponent } from '../components/filters/filters.component';
 export class TodosComponent implements OnInit {
   loading = true;
   showForm = false;
-  filtersObj: IFilter = {};
+  filtersObj: IFilter;
+  search: string;
+  todos: Todo[];
 
   @ViewChild(FiltersComponent) filters: FiltersComponent;
 
@@ -22,27 +24,23 @@ export class TodosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.todosService.getTodos()
-      .subscribe(() => {
+    this.todosService.getTodos$()
+      .subscribe((todos) => {
+        this.todos = todos;
         this.loading = false;
       });
   }
 
-  toggleForm() {
+  toggleForm(): void {
     this.showForm = !this.showForm;
   }
 
-  onFiltersChange(filter: IFilter) {
-    console.log(filter)
+  onFiltersChange(filter: IFilter): void {
     this.filtersObj = filter;
   }
 
-  isFilterVisible() {
-    const { status, search, userId } = this.filtersObj;
-    return search || userId || status;
+  onSearchChange(search: string): void {
+    this.search = search;
   }
 
-  clearFilters() {
-    this.filters.reset();
-  }
 }

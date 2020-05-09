@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthService, User } from './shared/services/auth.service';
+import { AuthService, User } from './services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

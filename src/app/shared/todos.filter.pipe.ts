@@ -1,7 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Todo } from '../shared/services/todos.service';
-import { IFilter } from '../components/filters/filters.interface';
-
+import { Todo } from '../services/todos.service';
+import { IFilter } from '../todos/components/filters/filters.interface';
 
 @Pipe({
     name: 'todosFilter',
@@ -9,7 +8,7 @@ import { IFilter } from '../components/filters/filters.interface';
 export class TodosFilterPipe implements PipeTransform {
     transform(todos: Todo[], args: IFilter): Todo[] {
         if (args) {
-            const { search, status, userId } = args; 
+            const { status, userId } = args;
 
             const filteredByStatus = todos.filter((todo) => {
                 if (typeof(status) === 'boolean') {
@@ -19,7 +18,7 @@ export class TodosFilterPipe implements PipeTransform {
                 }
             });
 
-            const filteredByUser = filteredByStatus.filter((todo) => {
+            return filteredByStatus.filter((todo) => {
                 if (userId) {
                     return todo.userId === userId;
                 } else {
@@ -27,16 +26,8 @@ export class TodosFilterPipe implements PipeTransform {
                 }
             });
 
-            if (!search?.trim()) {
-                return filteredByUser;
-            }
-
-            return filteredByUser.filter((todo) => {
-                return todo.title.toLowerCase().indexOf(search.toLocaleLowerCase()) !== -1;
-            })
         } else {
             return todos;
         }
     }
-
 }

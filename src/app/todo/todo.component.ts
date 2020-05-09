@@ -1,10 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
-import { TodosService, Todo } from '../shared/services/todos.service';
-import { User, AuthService } from '../shared/services/auth.service';
-import { EditDialogComponent } from '../components/edit-dialog/edit-dialog.component';
+import { TodosService, Todo } from '../services/todos.service';
+import { User, AuthService } from '../services/auth.service';
+import { EditDialogComponent } from '../todos/components/edit-dialog/edit-dialog.component';
 
 @Component({
   selector: 'app-todo',
@@ -18,12 +18,12 @@ export class TodoComponent implements OnInit {
   private user: User;
   isOwn: boolean;
 
-
   constructor(
     private activatedRoute: ActivatedRoute,
     private todosService: TodosService,
     private authService: AuthService,
-    public dialog: MatDialog,
+    private dialog: MatDialog,
+    private router: Router,
     ) {
     this.id = +this.activatedRoute.snapshot.params.id;
     this.authService.user.subscribe(x => this.user = x);
@@ -31,25 +31,28 @@ export class TodoComponent implements OnInit {
 
   ngOnInit(): void {
     this.todo = this.todosService.getTodoItem(this.id);
-    this.isOwn = this.checkOwner(this.todo.userId);
+    this.isOwn = this.user.id === this.todo.userId;
   }
 
-  checkOwner(userId: number): boolean {
-    return this.user.id === userId;
+  toggleDone(id: number): void {
+    this.todosService.toggleDone(id);
   }
 
-  handleDone(id: number) {
-    this.todosService.markDone(id);
-  } 
-
-  removeTodo(id: number) {
+  removeTodo(id: number): void {
     this.todosService.removeTodo(id);
+    this.router.navigate(['']);
   }
 
   openDialog(id: number): void {
-    this.dialog.open(EditDialogComponent, {
+    const dialogRef = this.dialog.open(EditDialogComponent, {
       width: '600px',
       data: id,
     });
+    dialogRef.afterClosed()
+      .subscribe((newTodo: Todo) => {
+        if (newTodo) {
+          this.todo = newTodo;
+        }
+      });
   }
 }

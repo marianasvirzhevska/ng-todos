@@ -1,0 +1,26 @@
+<div class="filters__container">
+    <form 
+        [formGroup]="filtersForm"
+        class="filters">
+        <div class="filters__row">
+            <mat-radio-group
+                aria-labelledby="radio-group-label"
+                class="filters__radio-group"
+                formControlName="filtersStatus"
+                >
+                <mat-radio-button class="filters__item radio-item" *ngFor="let status of statuses" [value]="status.value">
+                    {{ status.label | translate }}
+                </mat-radio-button>
+            </mat-radio-group> 
+            <div class="filters__item">
+                <mat-checkbox formControlName="ownTodos">{{ 'filters.own.todos' | translate }}</mat-checkbox>
+            </div>
+        </div>
+    </form>
+    <button *ngIf="filterObj"
+        mat-stroked-button
+        color="warn"
+        (click)="clearFilters()"
+        class="cancel-filters">{{ 'filters.cancel' | translate}}</button>
+</div>
+

@@ -64,21 +64,20 @@ img {
   }
 }
 
-.mat-stroked-button:not([disabled]) {
+.mat-stroked-button {
   &.button-logout {
     color: $white;
     border: 1px solid $white;
-  }
 
-  @media (max-width: 480px) {
-    display: none;
+    @media (max-width: 480px) {
+      display: none;
+    }
   }
 }
 
 .mat-icon-button.logout-mobile {
   display: none;
   color: $white;
-  // width: 20px;
 
   @media (max-width: 480px) {
     display: block;
@@ -160,4 +159,30 @@ img {
 
 .mat-primary .lang-option  .mat-option.mat-selected:not(.mat-option-disabled) {
   color: $accent-blue;
+}
+
+.clear-button.mat-button-base {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-51%);
+  color: $placeholder-disabled;
+}
+
+.mat-icon.clear-icon {
+  font-size: 16px;
+  border-radius: 50%;
+  background-color: $input-disabled;
+}
+
+.mat-stroked-button.cancel-filters {
+  right: 0;
+  position: absolute;
+  transform: translateY(30%);
+
+  @media(max-width: 480px) {
+    display: inline;
+    left: 0;
+    right: unset;
+  }
 }

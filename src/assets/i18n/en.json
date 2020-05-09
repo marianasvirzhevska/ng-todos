@@ -58,10 +58,17 @@
         "cancel": "Cancel",
         "not.found": "No todos now.",
         "mark.done": "Mark as done",
+        "mark.not.done": "Mark as not done",
         "edit": "Edit",
         "delete": "Delete",
         "details": "Todo details",
         "edit.title": "Edit Todo"
     },
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "not.found": "Page not found",
+    "message": {
+        "todo.added": "Todo successfully created",
+        "todo.edited": "Todo successfully Edited",
+        "todo.deleted": "Todo was deleted"
+    }
 }

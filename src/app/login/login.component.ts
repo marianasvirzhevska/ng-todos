@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
-import { TranslateService } from '@ngx-translate/core';
 
-import { AuthService } from '../shared/services/auth.service';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -13,10 +11,10 @@ import { AuthService } from '../shared/services/auth.service';
     styleUrls: ['./login.component.scss']
   })
 export class LoginComponent implements OnInit {
+    private returnUrl: string;
     loginForm: FormGroup;
     loading = false;
     submitted = false;
-    returnUrl: string;
     error = '';
 
     constructor(
@@ -24,20 +22,20 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authService: AuthService,
-        public translate: TranslateService
     ) {
     }
+
+    get usernameControl() { return this.loginForm.get('username')}
+    get passwordControl() { return this.loginForm.get('password')}
 
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
             username: ['', Validators.required],
-            password: ['', Validators.required]
+            password: ['', [Validators.required, Validators.minLength(6)]]
         });
 
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
-
-    get f() { return this.loginForm.controls; }
 
     onSubmit() {
         this.submitted = true;
@@ -46,14 +44,16 @@ export class LoginComponent implements OnInit {
             return;
         }
 
+        const username = this.loginForm.controls['username'].value;
+        const password = this.loginForm.controls['password'].value; 
+
         this.loading = true;
-        this.authService.login(this.f.username.value, this.f.password.value)
-            .pipe(first())
+        this.authService.login(username, password)
             .subscribe(
-                data => {
+                () => {
                     this.router.navigate([this.returnUrl]);
                 },
-                error => {
+                (error) => {
                     this.error = error;
                     this.loading = false;
                 });

@@ -13,6 +13,7 @@ function createTranslateLoader(http: HttpClient) {
   ],
   imports: [
     CommonModule,
+    // move to app module
     TranslateModule.forRoot({
         loader: {
             provide: TranslateLoader,

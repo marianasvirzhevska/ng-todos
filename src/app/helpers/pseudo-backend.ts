@@ -3,8 +3,8 @@ import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTT
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
-import { User } from '../shared/services/auth.service';
-import { Todo } from '../shared/services/todos.service';
+import { User } from '../services/auth.service';
+import { Todo } from '../services/todos.service';
 
 export const config = {
     apiUrl: 'http://localhost:4200'
@@ -47,7 +47,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
                 const isUserExist = users.find(x => x.username === reqBody.username || x.email === reqBody.email);
                 if (isUserExist) return error('Username or email is already in use.');
-                
+
                 const user = {
                     id: Date.now(),
                     username: reqUser.username,
@@ -55,7 +55,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     password: reqUser.password,
                     token: `fake-jwt-token`
                 };
-                
+
                 users.push(user);
                 localStorage.setItem('users', JSON.stringify(users));
 
