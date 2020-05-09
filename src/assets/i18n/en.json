@@ -65,5 +65,10 @@
         "edit.title": "Edit Todo"
     },
     "loading": "Loading...",
-    "not.found": "Page not found"
+    "not.found": "Page not found",
+    "message": {
+        "todo.added": "Todo successfully created",
+        "todo.edited": "Todo successfully Edited",
+        "todo.deleted": "Todo was deleted"
+    }
 }

@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
 
 import { Todo, TodosService } from '../../../services/todos.service';
 
@@ -21,20 +20,18 @@ export class EditDialogComponent implements OnInit {
   private todo: Todo;
 
   constructor(
-    private todoService: TodosService,
-    public translate:  TranslateService,
+    private todosService: TodosService,
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<EditDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    private dialogRef: MatDialogRef<EditDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) private data: DialogData) {}
 
   ngOnInit(): void {
-    // const todos = this.todoService.getStoredTodos();
-    // this.todo = todos.find(x => +this.data === x.id);
+    this.todo = this.todosService.getTodoItem(+this.data);
     this.todoEditForm = this.buildForm(this.todo);
   }
 
-  get titleControl() { return this.todoEditForm.get('title'); }
-  get descriptionControl() { return this.todoEditForm.get('description'); }
+  get titleControl() { return this.todoEditForm.get('title');}
+  get descriptionControl() { return this.todoEditForm.get('description');}
 
   private buildForm(todo: Todo) {
     return this.formBuilder.group(
@@ -45,7 +42,7 @@ export class EditDialogComponent implements OnInit {
     )
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.submitted = true;
 
     if (this.todoEditForm.invalid) {
@@ -57,7 +54,8 @@ export class EditDialogComponent implements OnInit {
       ...this.todoEditForm.value,
     };
 
-    this.todoService.editTodo(newTodo);
+    this.todosService.editTodo(newTodo);
+    this.dialogRef.close(newTodo);
   }
 
   handleCancel(): void {

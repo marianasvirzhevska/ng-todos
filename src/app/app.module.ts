@@ -7,15 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatSelectModule } from '@angular/material/select';
-
 import { fakeBackendProvider } from './helpers/pseudo-backend';
 import { JwtInterceptor } from './helpers/jwt-interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
@@ -42,8 +33,9 @@ import { FiltersComponent } from './todos/components/filters/filters.component';
 import { EditDialogComponent } from './todos/components/edit-dialog/edit-dialog.component';
 import { LangSwitcherComponent } from './common/header/lang-switcher/lang-switcher.component';
 import { SearchComponent } from './todos/components/search/search.component';
+import { SnackBarComponent } from './common/snack-bar/snack-bar.component';
+import { MaterialModule } from './shared/material.modules';
 
-// move to separate modules
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +54,7 @@ import { SearchComponent } from './todos/components/search/search.component';
     LangSwitcherComponent,
     SearchComponent,
     TodosSearchPipe,
+    SnackBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,15 +65,7 @@ import { SearchComponent } from './todos/components/search/search.component';
     SharedModule,
 
     BrowserAnimationsModule,
-    //create separate metiral module
-    MatButtonModule,
-    MatCheckboxModule,
-    MatIconModule,
-    MatDialogModule,
-    MatSnackBarModule,
-    MatMenuModule,
-    MatRadioModule,
-    MatSelectModule,
+    MaterialModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
