@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { TodosService, Todo } from '../services/todos.service';
 import { User, AuthService } from '../services/auth.service';
-import { EditDialogComponent } from '../components/edit-dialog/edit-dialog.component';
+import { EditDialogComponent } from '../todos/components/edit-dialog/edit-dialog.component';
 
 @Component({
   selector: 'app-todo',

@@ -11,14 +11,16 @@ export class TranslationsService {
     ) {
         this.translateService.addLangs(Object.keys(LANGUAGES));
         this.translateService.setDefaultLang(LANGUAGES.EN);
-        this.translateService.use(LANGUAGES.EN);
+        // this.translateService.use(LANGUAGES.EN);
+        const browserLang = this.translateService.getBrowserLang();
+        translateService.use(browserLang.match(/en|ua|ru/) ? browserLang : LANGUAGES.EN);
     }
 
-    setLanguage(code: string) {
+    setLanguage(code: string): void {
         this.translateService.use(code);
     }
 
-    getCurrentLang() {
+    getCurrentLang(): string {
         return this.translateService.currentLang;
     }
 }

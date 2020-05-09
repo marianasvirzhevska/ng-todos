@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 
 import { AuthService, User } from '../../services/auth.service';
 
@@ -9,22 +8,18 @@ import { AuthService, User } from '../../services/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   user: User;
 
   constructor(
     private router: Router,
     private authService: AuthService,
-    public translate: TranslateService
   ) {
     this.authService.user.subscribe(x => this.user = x);
   }
 
-  ngOnInit(): void {}
-
-  logout() {
+  logout(): void {
     this.authService.logout();
     this.router.navigate(['/login']);
-}
-
+  }
 }

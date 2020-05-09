@@ -31,16 +31,16 @@ import { TodosSearchPipe } from './shared/todos.search.pipe';
 import { AppComponent } from './app.component';
 import { TodosComponent } from './todos/todos.component';
 import { TodoComponent } from './todo/todo.component'
-import { TodoFormComponent } from './components/todo-form/todo-form.component';
-import { HeaderComponent } from './components/header/header.component';
+import { TodoFormComponent } from './todos/components/todo-form/todo-form.component';
+import { HeaderComponent } from './common/header/header.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './register/register.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { TodoItemComponent } from './components/todo-item/todo-item.component';
+import { FooterComponent } from './common/footer/footer.component';
+import { TodoItemComponent } from './todos/components/todo-item/todo-item.component';
 import { FiltersComponent } from './todos/components/filters/filters.component';
-import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
-import { LangSwitcherComponent } from './components/lang-switcher/lang-switcher.component';
+import { EditDialogComponent } from './todos/components/edit-dialog/edit-dialog.component';
+import { LangSwitcherComponent } from './common/header/lang-switcher/lang-switcher.component';
 import { SearchComponent } from './todos/components/search/search.component';
 
 // move to separate modules

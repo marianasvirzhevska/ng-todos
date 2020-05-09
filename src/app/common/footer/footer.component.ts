@@ -15,16 +15,17 @@ export class FooterComponent implements OnInit {
 
   constructor(
     private translate: TranslationsService,
-    public authService: AuthService,
-  ) {}
+    private authService: AuthService,
+  ) {
+  }
 
   ngOnInit() {
     this.authService.user.subscribe(x => this.user = x);
     this.currentLanguage = this.translate.getCurrentLang();
-    setTimeout(() => this.currentLanguage = this.languages.RU, 2000);
   }
 
-  setLang(code: string) {
+  setLang(code: string): void {
     this.translate.setLanguage(code);
+    this.currentLanguage = code;
   }
 }

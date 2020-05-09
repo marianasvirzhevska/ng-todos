@@ -30,7 +30,7 @@ export class LangSwitcherComponent implements OnInit {
     this.selected = this.translate.getCurrentLang();
   }
 
-  onSelect(selected: MatSelectChange) {
+  onSelect(selected: MatSelectChange): void {
     this.translate.setLanguage(selected.value);
   }
 }

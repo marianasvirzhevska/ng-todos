@@ -50,9 +50,21 @@
 
     .form-control {
         width: 100%;
+
+        & ~ .error {
+            display: none;
+        }
+
+        &.ng-invalid.ng-touched {
+            border: 1px solid $border-error;
+            & ~ .error {
+                display: block;
+            }
+        }
+
     }
 
-    .invalid-feedback {
+    .error {
         color: $error;
         font-size: $font-small;
     }

@@ -1,0 +1,16 @@
+<div class="footer">
+    <div class="container footer__container">
+        <div *ngIf="!user" class="footer__lang-switcher">
+            <button mat-mini-fab class="lang"
+                [ngClass]="{selected: currentLanguage === languages.UA}"
+                (click)="setLang(languages.UA)">{{ 'lang.ua' | translate}}</button>
+            <button mat-mini-fab class="lang"
+                [ngClass]="{selected: currentLanguage === languages.RU}"
+                (click)="setLang(languages.RU)">{{ 'lang.ru' | translate }}</button>
+            <button mat-mini-fab class="lang"
+                [ngClass]="{selected: currentLanguage === languages.EN}"
+                (click)="setLang(languages.EN)">{{ 'lang.en' | translate }}</button>
+        </div>
+        <div class="footer__copy">{{ "footer.copyright" | translate }} ©2020</div>
+    </div>
+</div>

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
-import { TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from '../services/auth.service';
 @Component({
@@ -16,13 +14,13 @@ export class RegisterComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   error = '';
+  formErrors = {};
 
   constructor(
       private formBuilder: FormBuilder,
       private route: ActivatedRoute,
       private router: Router,
       private authService: AuthService
-      // no need to import services for pipes
   ) {
   }
 
@@ -31,7 +29,10 @@ export class RegisterComponent implements OnInit {
       this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  get f() { return this.registerForm.controls; }
+  get emailControl() { return this.registerForm.get('email')}
+  get usernameControl() { return this.registerForm.get('username')}
+  get passwordControl() { return this.registerForm.get('password')}
+  get passwordConfirmControl() { return this.registerForm.get('confirmPassword')}
 
   onSubmit() {
       this.submitted = true;
@@ -43,10 +44,8 @@ export class RegisterComponent implements OnInit {
       this.loading = true;
 
       this.authService.register(this.registerForm.value)
-        // first() is redundunt here
-          .pipe(first())
           .subscribe(
-              data => {
+              () => {
                   this.router.navigate([this.returnUrl]);
               },
               error => {
@@ -75,7 +74,7 @@ export class RegisterComponent implements OnInit {
   private buildForm(): FormGroup {
     return this.formBuilder.group(
         {
-            email: ['', [Validators.required, Validators.email]],
+            email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
             username: ['', Validators.required],
             password: ['', [Validators.required, Validators.minLength(6)]],
             confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
@@ -84,6 +83,5 @@ export class RegisterComponent implements OnInit {
             validator: this.checkPasswords('password', 'confirmPassword')
         }
     );
-
   }
 }
