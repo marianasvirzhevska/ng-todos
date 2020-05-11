@@ -30,8 +30,10 @@
             <ul *ngIf="todos.length; else noTodos" class="todos__list">
                 <li *ngFor="let todo of todos | todosFilter: filtersObj | todosSearch: search "
                 class="todos__item">
-                    <app-todo-item [todo]="todo"></app-todo-item>
-                </li>
+                <app-todo-item [todo]="todo"></app-todo-item>
+            </li>
+            <li *ngIf="!(todos | todosFilter: filtersObj | todosSearch: search).length"
+                class="todos__no-results">{{ 'todo.no.results' | translate }}</li>
             </ul>
             <ng-template #noTodos>
                 <p class="todos__not-found">{{ 'todo.not.found' | translate }}</p>

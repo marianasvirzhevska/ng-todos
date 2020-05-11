@@ -62,7 +62,8 @@
         "edit": "Edit",
         "delete": "Delete",
         "details": "Todo details",
-        "edit.title": "Edit Todo"
+        "edit.title": "Edit Todo",
+        "no.results": "Can't find any matching results."
     },
     "loading": "Loading...",
     "not.found": "Page not found",

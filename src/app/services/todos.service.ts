@@ -25,7 +25,7 @@ const mocDesc = 'Many desktop publishing packages and web page editors now use L
 
 @Injectable({providedIn: 'root'})
 export class TodosService {
-    private todosSubject = new BehaviorSubject<Todo[]>([])
+    private todosSubject = new BehaviorSubject<Todo[]>(null)
     private todos: Todo[] = [];
     private messages = MESSAGES;
     private snackbarVisibleTimeout = 3000;
